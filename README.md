@@ -1,5 +1,7 @@
 # <p align="center">![](https://i.imgur.com/zRda5uX.png)</p>
 
+[TO-DO Kanban](https://github.com/orgs/Sanmeet-EWU/projects/21/views/1)
+
 # Motivation
 Many readers feel overwhelmed by the sheer volume of books available and struggle to discover titles that genuinely capture their interest. While numerous platforms offer reading recommendations, they often fail to deliver personalized suggestions that reflect the unique tastes and reading histories of individual users. This leads to missed opportunities for discovering new books. Our goal is to bridge this gap by offering a sophisticated, user-centric recommendation engine.
 
