@@ -1,0 +1,6 @@
+So the repository is where our Spring Data JPA repository is located. The repository is an interface that extends the
+JpaRepository interface. The JpaRepository interface is a part of the Spring Data JPA library. It provides methods for
+performing CRUD (Create, Read, Update, Remove) operations on the entity. The JpaRepository interface takes two
+parameters: the entity type and the type of the entity’s primary key.
+
+So basically this is where we will define our custom queries.

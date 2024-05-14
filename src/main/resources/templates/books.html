@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Books</title>
+</head>
+<body>
+<h1>List of Books</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Publication Date</th>
+        <th>Publication ID</th>
+        <th>Category</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.isbn}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${#dates.format(book.pubDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${book.pubId}"></td>
+        <td th:text="${book.category}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/books/add}">Add New Book</a>
+</body>
+</html>
