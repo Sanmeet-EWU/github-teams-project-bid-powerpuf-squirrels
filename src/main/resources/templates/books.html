@@ -13,6 +13,7 @@
         <th>Publication Date</th>
         <th>Publication ID</th>
         <th>Category</th>
+        <th>Cover</th>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
         <td th:text="${#dates.format(book.pubDate, 'yyyy-MM-dd')}"></td>
         <td th:text="${book.pubId}"></td>
         <td th:text="${book.category}"></td>
+        <td><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${book.isbn} + '-M.jpg'" alt="cover"></td>
     </tr>
     </tbody>
 </table>

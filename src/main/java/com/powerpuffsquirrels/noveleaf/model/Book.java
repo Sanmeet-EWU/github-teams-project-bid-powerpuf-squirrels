@@ -9,22 +9,22 @@ import java.sql.Date;
 // might need to look into it some more
 
 @Entity
-@Table(name = "books") // I know its saying that it cant resolve the table name. it lies, and will not work without it.
+@Table(name = "books")
 public class Book {
 
     @Id
-    private int isbn; // Primary key
+    private String isbn; // Primary key
     private String title;
     private Date pubDate;
     private int pubId;
     private String category;
 
     // Getters and Setters
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
