@@ -2,3 +2,9 @@ This folder contains the controllers. Basically, you create a controller for eac
 is responsible for handling the requests and responses of the page. It is the middleman between the model and the view.
 
 This is where we're really going to need to learn all the spring MVC annotations.
+
+
+
+Login controller - where we store and deal with passwords and hashing
+
+User controller - where we create the user object

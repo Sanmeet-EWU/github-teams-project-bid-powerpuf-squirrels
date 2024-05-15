@@ -1,0 +1,43 @@
+/*
+    This will handle all the UI stuff
+    Then we store that string in database to back end
+    we're going to use MD5
+    database management
+    Creates User Database, User Object, and Hashed Password for storing
+     */
+package com.powerpuffsquirrels.noveleaf.controller;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
+@Controller
+public class loginController {
+    //private static final String DB_URL = noveleafdb.ddns.net:3306;
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    public static String hashPassword(String userPass) {
+        return encoder.encode(userPass);
+    }
+    public static boolean comparePass(String inputPass, String hashedPass) {
+        return encoder.matches(inputPass, hashedPass);
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter password: ");
+        String userPass = scanner.nextLine();
+        String hashedPass = hashPassword(userPass);
+        System.out.println("Hashed password: " + hashedPass);
+
+        System.out.println("Enter password again to compare: ");
+        String inputPass = scanner.nextLine();
+        boolean matches = comparePass(inputPass, hashedPass);
+        if (matches) {
+            System.out.println("Passwords match.");
+        } else {
+            System.out.println("Passwords do not match.");
+        }
+
+
+}
