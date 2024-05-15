@@ -1,23 +1,16 @@
 package com.powerpuffsquirrels.noveleaf.model;
 
-import jakarta.persistence.*;
-
-import java.sql.Date;
-
-// This is using the JPA (Java Persistence API) to define the Book entity
-// This allows for high level database access and manipulation
-// might need to look into it some more
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "books")
 public class Book {
-
     @Id
     private String isbn; // Primary key
     private String title;
-    private Date pubDate;
-    private int pubId;
-    private String category;
+    private String authorName;
 
     // Getters and Setters
     public String getIsbn() {
@@ -36,27 +29,11 @@ public class Book {
         this.title = title;
     }
 
-    public Date getPubDate() {
-        return pubDate;
+    public String getAuthorName() {
+        return authorName;
     }
 
-    public void setPubDate(Date pubDate) {
-        this.pubDate = pubDate;
-    }
-
-    public int getPubId() {
-        return pubId;
-    }
-
-    public void setPubId(int pubId) {
-        this.pubId = pubId;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 }

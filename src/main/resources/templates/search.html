@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Books</title>
+    <script type="text/javascript">
+        function handleImageLoad(image) {
+            if (image.naturalWidth === 1 && image.naturalHeight === 1) {
+                image.src = 'https://i.imgur.com/zRda5uX.png'; // Path to your fallback image
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Search Books</h1>
+<form action="#" th:action="@{/search}" method="get">
+    <input type="text" name="q" placeholder="Search"/>
+    <button type="submit">Search</button>
+</form>
+
+<div th:if="${books != null}">
+    <table width="80%" th:each="book : ${books}">
+        <tr>
+            <td width="100px"><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${book.isbn} + '-M.jpg'"
+                                   alt="cover"
+                                   width="100px"
+                                   onload="handleImageLoad(this)"/></td>
+            <td valign="top" align="left">
+
+                Title: <span th:text="${book.title}"></span><br>
+                Author: <span th:text="${book.authorName}"></span><br>
+                ISBN: <span th:text="${book.isbn}"></span>
+
+            </td>
+
+            <td width="100px">
+                Read<br>
+                Want to Read
+
+            </td>
+
+        </tr>
+    </table>
+
+
+</div>
+</body>
+</html>
