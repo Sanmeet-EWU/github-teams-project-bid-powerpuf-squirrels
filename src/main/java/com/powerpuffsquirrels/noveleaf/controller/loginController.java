@@ -35,15 +35,14 @@ public class loginController {
         String hashedPass = hashPassword(userPass);
         System.out.println("Hashed password: " + hashedPass);
 
-        System.out.println("Enter password again to compare: ");
+        System.out.println("Enter password again: ");
         String inputPass = scanner.nextLine();
         boolean matches = comparePass(inputPass, hashedPass);
         if (matches) {
-            System.out.println("Passwords match.");
+            System.out.println("Good job logging in");
         } else {
-            System.out.println("Passwords do not match.");
+            System.out.println("Wrong password try again");
         }
-
 
     }
 }
