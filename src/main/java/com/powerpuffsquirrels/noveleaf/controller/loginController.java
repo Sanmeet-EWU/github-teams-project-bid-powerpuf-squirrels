@@ -9,9 +9,12 @@ package com.powerpuffsquirrels.noveleaf.controller;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
+
 @Controller
 public class loginController {
     //private static final String DB_URL = noveleafdb.ddns.net:3306;
@@ -20,9 +23,11 @@ public class loginController {
     public static String hashPassword(String userPass) {
         return encoder.encode(userPass);
     }
+
     public static boolean comparePass(String inputPass, String hashedPass) {
         return encoder.matches(inputPass, hashedPass);
     }
+    @GetMapping("/login")
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter password: ");
@@ -40,4 +45,5 @@ public class loginController {
         }
 
 
+    }
 }
