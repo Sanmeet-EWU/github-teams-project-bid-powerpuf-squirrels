@@ -18,7 +18,7 @@ public class UserAccount {
 
     public UserAccount(){}
 
-    public UserAccount(String username, Integer hash){
+    public UserAccount(String username, String hash){
         this.username = username;
         this.hash = hash;
     }
@@ -35,11 +35,11 @@ public class UserAccount {
         this.username = username;
     }
 
-    public Integer getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(Integer hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
