@@ -1,11 +1,22 @@
 package com.powerpuffsquirrels.noveleaf.model;
 
 import jakarta.persistence.*;
-import org.hibernate.type.descriptor.jdbc.DateJdbcType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jdk.jfr.DataAmount;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 @Entity
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
 @Table(name = "reading_goal")
 public class ReadingGoal {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="goal_id", nullable = false)
@@ -18,19 +29,20 @@ public class ReadingGoal {
     private Integer target;
 
     @Column(name = "start_date", nullable = false)
-    private DateJdbcType startDate;
+    private java.sql.Date   startDate;
 
     @Column(name = "end_date", nullable = false)
-    private DateJdbcType endDate;
+    private java.sql.Date   endDate;
 
     @Column(name = "books_read")
     private Integer booksRead;
 
     private String status;
 
+/*
     public ReadingGoal() {}
 
-    public ReadingGoal(Integer userID, Integer target, DateJdbcType startDate, DateJdbcType endDate){
+    public ReadingGoal(Integer userID, Integer target, java.sql.Date   startDate, java.sql.Date   endDate){
         this.userID = userID;
         this.target = target;
         this.startDate = startDate;
@@ -49,11 +61,11 @@ public class ReadingGoal {
         return target;
     }
 
-    public DateJdbcType getStartDate() {
+    public java.sql.Date   getStartDate() {
         return startDate;
     }
 
-    public DateJdbcType getEndDate() {
+    public java.sql.Date   getEndDate() {
         return endDate;
     }
 
@@ -73,16 +85,17 @@ public class ReadingGoal {
         this.status = status;
     }
 
-    public void setStartDate(DateJdbcType startDate) {
+    public void setStartDate(java.sql.Date   startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(DateJdbcType endDate) {
+    public void setEndDate(java.sql.Date   endDate) {
         this.endDate = endDate;
     }
 
     public void setTarget(Integer target) {
         this.target = target;
     }
+*/
 
 }
