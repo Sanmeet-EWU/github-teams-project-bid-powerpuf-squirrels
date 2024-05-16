@@ -14,7 +14,7 @@ public class UserAccount {
     private String username;
 
     @Column(nullable = false)
-    private Integer hash;
+    private String hash;
 
     public UserAccount(){}
 
