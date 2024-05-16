@@ -3,11 +3,19 @@ package com.powerpuffsquirrels.noveleaf.controller;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserController {
-    private String username;
-    private String passwordHash;
+    private final String username;
+    private final String passwordHash;
 
-    public void setPassword(String password) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        this.passwordHash = encoder.encode(password);
+    public UserController(String passwordHash) {
+        this.username =
+        this.passwordHash = passwordHash;
     }
+
+    public String getUsername() {
+        return username;
+    }
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
 }
