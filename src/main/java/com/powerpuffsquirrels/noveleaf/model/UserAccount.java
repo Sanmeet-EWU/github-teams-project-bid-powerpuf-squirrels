@@ -1,8 +1,13 @@
 package com.powerpuffsquirrels.noveleaf.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "user_account")
 public class UserAccount {
     @Id
@@ -10,37 +15,12 @@ public class UserAccount {
     @Column(name="user_id")
     private Integer userID; // Primary key
 
+    @Setter
     @Column(nullable = false)
     private String username;
 
+    @Setter
     @Column(nullable = false)
     private String hash;
-
-    public UserAccount(){}
-
-    public UserAccount(String username, String hash){
-        this.username = username;
-        this.hash = hash;
-    }
-
-    public Integer getUserID() {
-        return userID;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
 
 }
