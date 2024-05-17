@@ -1,7 +1,13 @@
 package com.powerpuffsquirrels.noveleaf.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "author")
 public class Author {
     @Id
@@ -9,37 +15,12 @@ public class Author {
     @Column(name="author_id")
     private Integer authorID; // Primary key
 
+    @Setter
     @Column(nullable = false, name="first_name")
     private String firstName;
 
+    @Setter
     @Column(nullable = false, name="last_name")
     private String lastName;
-
-    public Author(){}
-
-    public Author(String firstName, String lastName){
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Integer getAuthorID() {
-        return authorID;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
 
 }
