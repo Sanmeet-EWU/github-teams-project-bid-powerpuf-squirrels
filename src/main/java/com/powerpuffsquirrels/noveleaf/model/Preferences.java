@@ -1,56 +1,31 @@
 package com.powerpuffsquirrels.noveleaf.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Table(name = "preferences")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "preference")
 public class Preferences {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pref_id")
     private Integer prefID; // Primary key
 
-    @Column(nullable = false, name = "user_id")
-    private Integer userID;
+    @ManyToOne
+    @JoinColumn(name = "user_id",referencedColumnName = "user_id", nullable = false)
+    private UserAccount user;
 
+    @Setter
     @Column(nullable = false, name = "pref_type")
     private String pref_type;
 
+    @Setter
     @Column(nullable = false)
     private String value;
-
-    public Preferences() {
-    }
-
-    public Preferences(Integer userID, String pref_type, String value) {
-        this.userID = userID;
-        this.pref_type = pref_type;
-        this.value = value;
-    }
-
-    public Integer getPrefID() {
-        return prefID;
-    }
-
-    public Integer getUserID() {
-        return userID;
-    }
-
-    public String getPrefType() {
-        return pref_type;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setPref_type(String pref_type) {
-        this.pref_type = pref_type;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
 
 }
