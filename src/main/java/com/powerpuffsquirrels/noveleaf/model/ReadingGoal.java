@@ -1,19 +1,14 @@
 package com.powerpuffsquirrels.noveleaf.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jdk.jfr.DataAmount;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import lombok.*;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "reading_goal")
 public class ReadingGoal {
 
@@ -25,77 +20,27 @@ public class ReadingGoal {
     @Column(name = "user_id", nullable = false)
     private Integer userID;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private UserAccount user;
+
+    @Setter
     @Column(nullable = false)
     private Integer target;
 
+    @Setter
     @Column(name = "start_date", nullable = false)
     private java.sql.Date   startDate;
 
+    @Setter
     @Column(name = "end_date", nullable = false)
     private java.sql.Date   endDate;
 
+    @Setter
     @Column(name = "books_read")
     private Integer booksRead;
 
+    @Setter
     private String status;
-
-/*
-    public ReadingGoal() {}
-
-    public ReadingGoal(Integer userID, Integer target, java.sql.Date   startDate, java.sql.Date   endDate){
-        this.userID = userID;
-        this.target = target;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
-
-    public Integer getGoalID() {
-        return goalID;
-    }
-
-    public Integer getUserID() {
-        return userID;
-    }
-
-    public Integer getTarget() {
-        return target;
-    }
-
-    public java.sql.Date   getStartDate() {
-        return startDate;
-    }
-
-    public java.sql.Date   getEndDate() {
-        return endDate;
-    }
-
-    public Integer getBooksRead() {
-        return booksRead;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setBooksRead(Integer booksRead) {
-        this.booksRead = booksRead;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setStartDate(java.sql.Date   startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(java.sql.Date   endDate) {
-        this.endDate = endDate;
-    }
-
-    public void setTarget(Integer target) {
-        this.target = target;
-    }
-*/
 
 }
