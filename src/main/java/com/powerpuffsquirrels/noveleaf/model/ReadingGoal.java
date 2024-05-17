@@ -17,9 +17,6 @@ public class ReadingGoal {
     @Column(name ="goal_id", nullable = false)
     private Integer goalID;
 
-    @Column(name = "user_id", nullable = false)
-    private Integer userID;
-
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private UserAccount user;
