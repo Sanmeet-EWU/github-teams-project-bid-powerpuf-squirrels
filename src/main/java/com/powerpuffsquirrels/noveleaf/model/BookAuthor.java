@@ -1,31 +1,36 @@
 package com.powerpuffsquirrels.noveleaf.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+import java.io.Serializable;
 
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
+@IdClass(BookAuthor.BookAuthorID.class )
 @Table(name = "book_author")
 public class BookAuthor {
-    @Id
-    @Column(nullable = false)
-    private String isbn; //primary key
 
     @Id
-    @Column(nullable = false, name = "author_id")
-    private Integer authorID;
+    @ManyToOne
+    @JoinColumn(name = "isbn", referencedColumnName ="isbn", nullable = false)
+    private Book book;
 
-    public BookAuthor(){ }
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "author_id", nullable = false)
+    private Author author;
 
-    public BookAuthor(String isbn, Integer authorID){
-        this.authorID = authorID;
-        this.isbn = isbn;
-    }
-
-    public String getIsbn(){
-        return this.isbn;
-    }
-
-    public Integer getAuthorID(){
-        return this.authorID;
+    @Getter
+    @EqualsAndHashCode
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class BookAuthorID implements Serializable {
+        private String isbn;
+        private Integer authorID;
     }
 
 }
