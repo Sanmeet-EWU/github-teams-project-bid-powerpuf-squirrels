@@ -7,7 +7,6 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -19,12 +18,14 @@ import java.util.Date;
 public class InShelf {
 
     @Id
-    @Column(nullable = false)
-    private String isbn;
+    @ManyToOne
+    @JoinColumn(name = "isbn", referencedColumnName = "isbn", nullable = false)
+    private Book book;
 
     @Id
-    @Column(nullable = false, name = "shelf_id")
-    private Integer shelfID;
+    @ManyToOne
+    @JoinColumn(name = "shelf_id", referencedColumnName = "shelf_id", nullable = false)
+    private Shelf shelf;
 
     @Setter
     @Column(nullable = false, name = "date_added")
