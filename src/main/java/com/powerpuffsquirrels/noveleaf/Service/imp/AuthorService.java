@@ -1,10 +1,13 @@
-/*package com.powerpuffsquirrels.noveleaf.Service.imp;
+package com.powerpuffsquirrels.noveleaf.Service.imp;
+import com.powerpuffsquirrels.noveleaf.DataTransferObj.AuthorDto;
+import com.powerpuffsquirrels.noveleaf.Mapping.AuthorMapper;
 import com.powerpuffsquirrels.noveleaf.Service.AuthorServInterface;
 import com.powerpuffsquirrels.noveleaf.model.Author;
 import com.powerpuffsquirrels.noveleaf.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthorService implements AuthorServInterface {
@@ -16,13 +19,14 @@ public class AuthorService implements AuthorServInterface {
     }
 
     @Override
-    public List<Author> getAllAuthors() {getAllAuthors()
-        return null;
-    }
+    public List<AuthorDto> getAllAuthors() {
+        List<Author> authors = author_repo.findAll();
+        List<AuthorDto> authorDtos = authors.stream()
+                .map((author -> AuthorMapper.mapToAuthorDto(author)))
+                .collect(Collectors.toList());
 
+            return authorDtos;
+        }
 
 }
 
-Need to implement Data trasnfer object and Mapping before this can work
-
-*/
