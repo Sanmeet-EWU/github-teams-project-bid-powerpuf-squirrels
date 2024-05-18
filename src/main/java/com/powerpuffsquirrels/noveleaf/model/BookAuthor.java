@@ -29,8 +29,8 @@ public class BookAuthor {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class BookAuthorID implements Serializable {
-        private String isbn;
-        private Integer authorID;
+        private String book;
+        private Integer author;
     }
 
 }

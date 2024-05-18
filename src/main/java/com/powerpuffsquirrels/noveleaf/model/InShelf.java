@@ -39,8 +39,8 @@ public class InShelf {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class InShelfId implements Serializable {
-        private String isbn;
-        private Integer shelfID;
+        private String book;
+        private Integer shelf;
 
         // Getter and Setter handled by @Data
     }
