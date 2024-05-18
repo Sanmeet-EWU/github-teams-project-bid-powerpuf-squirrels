@@ -35,7 +35,12 @@ public class SearchController {
                     Book book = new Book();
                     book.setIsbn(!doc.path("isbn").isEmpty() ? doc.path("isbn").get(0).asText() : "N/A");
                     book.setTitle(doc.path("title").asText());
-                    book.setAuthorName(!doc.path("author_name").isEmpty() ? doc.path("author_name").get(0).asText() : "N/A");
+                    book.setBookAuthors(new ArrayList<>());
+                    if (!doc.path("author_name").isEmpty()) {
+                        for (JsonNode author : doc.path("author_name")) {
+                            book.addAuthor(author.asText());
+                        }
+                    }
                     books.add(book);
                 }
                 model.addAttribute("books", books);

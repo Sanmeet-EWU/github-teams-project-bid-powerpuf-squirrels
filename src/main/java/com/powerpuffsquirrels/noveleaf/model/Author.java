@@ -23,4 +23,7 @@ public class Author {
     @Column(nullable = false, name="last_name")
     private String lastName;
 
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }
