@@ -1,0 +1,2 @@
+The DTO package contains Data Transfer Objects,
+which are simple objects used to transfer data between different layers or components.

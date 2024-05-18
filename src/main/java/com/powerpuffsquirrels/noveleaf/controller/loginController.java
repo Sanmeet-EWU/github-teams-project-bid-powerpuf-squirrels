@@ -4,7 +4,7 @@
     we're going to use MD5
     database management
     Creates User Database, User Object, and Hashed Password for storing
-     */
+
 
 //Reed: Looks like we're using BCrypt, not MD5?
 
@@ -49,3 +49,4 @@ public class loginController {
 
     }
 }
+*/
