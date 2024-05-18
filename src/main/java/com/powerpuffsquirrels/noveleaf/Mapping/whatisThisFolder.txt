@@ -1,0 +1,2 @@
+mapping class is responsible for converting data between different object types,
+ between Data Transfer Objects (DTOs) and entity models.
