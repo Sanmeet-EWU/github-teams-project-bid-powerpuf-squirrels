@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">"Authors"</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,33 @@
     </div>
 </nav>
 
+<br /><br /><br />
+<div class="container">
+    <div class="row">
+        <h1>List of Authors</h1>>
+    </div>
+    <br />
+    <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>authorID</th>
+                    <th> First NAme</th>
+                    <th> Last Name </th>
+                <tr>
 
+            </thead>
+            <tbody>
+                <tr th:each="author :${authors}">
+                    <td th:text="${authors.authorID}" ><</td>
+                    <td th:text=$"(authors.firstName}" ><</td>
+                    <td th:test=$"(authors.lastName}"><</td>
+                    <td><td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
 </body>
 </html>
