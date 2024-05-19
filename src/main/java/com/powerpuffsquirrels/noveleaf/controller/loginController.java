@@ -5,7 +5,7 @@
     database management
     Creates User Database, User Object, and Hashed Password for storing
 
-
+*/
 //Reed: Looks like we're using BCrypt, not MD5?
 
 package com.powerpuffsquirrels.noveleaf.controller;
@@ -49,4 +49,3 @@ public class loginController {
 
     }
 }
-*/

@@ -29,18 +29,7 @@ public class AuthorService implements AuthorServInterface {
 
             return authorDtos;
         }
-    /* getAllAuthros take data from the DataBAase entites and convert is into Author objs.
-    * it retrieves all Authros from the DB
-    * will need to write more methods.
-    * */
 
-/*
-    lambda  List <Integer > num - Ararays.asList (1,2,3,4,5);
-    List <Integer > sqr = num.stream()
-        .map(num -> num* num)
-        .collect(Colletors.toList());
-
- */
 
 
 
