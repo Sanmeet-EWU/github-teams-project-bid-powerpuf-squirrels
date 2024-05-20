@@ -1,0 +1,22 @@
+<header>
+    <img src="https://i.imgur.com/zRda5uX.png" alt="Noveleaf" style="width: 100px; display: inline-block; margin-left: 10px;">
+    <table width="100%" border="0px">
+        <tr>
+            <td>
+                <a href="/" class="button">Home</a>
+                <a href="/search" class="button">Search</a>
+                <a href="/login" class="button">Login</a>
+            </td>
+            <td align="right">
+                <a href="/register" class="button">Register</a>
+            </td>
+            <td align="right" width="290px">
+                <form action="#" th:action="@{/search}" method="get" style="margin-left: 10px">
+                    <input type="text" name="q" placeholder="Search" style="padding: 10px;"/>
+                    <button type="submit" style="padding: 10px;">Search</button>
+                </form>
+
+            </td>
+        </tr>
+    </table>
+</header>

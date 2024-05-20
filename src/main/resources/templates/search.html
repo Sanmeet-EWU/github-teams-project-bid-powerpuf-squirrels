@@ -1,21 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Search Books</title>
-    <script type="text/javascript">
-        function handleImageLoad(image) {
-            if (image.naturalWidth === 1 && image.naturalHeight === 1) {
-                image.src = 'https://i.imgur.com/zRda5uX.png'; // Path to your fallback image
-            }
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Home Page</title>
+    <link rel="stylesheet" th:href="@{styles.css}">
 </head>
 <body>
+<th:block th:insert="~{header :: header}"></th:block>
 <h1>Search Books</h1>
-<form action="#" th:action="@{/search}" method="get">
-    <input type="text" name="q" placeholder="Search"/>
-    <button type="submit">Search</button>
-</form>
 
 <div th:if="${books != null}">
     <table width="80%" th:each="book : ${books}">
@@ -43,5 +36,6 @@
 
 
 </div>
+<th:block th:insert="~{footer :: footer}"></th:block>
 </body>
 </html>

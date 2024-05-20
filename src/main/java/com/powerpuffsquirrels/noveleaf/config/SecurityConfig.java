@@ -11,6 +11,6 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers("/search", "/authors", "/");
+        return web -> web.ignoring().requestMatchers("/search", "/authors", "/", "*");
     }
 }
