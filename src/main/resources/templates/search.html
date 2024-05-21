@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Home Page</title>
     <link rel="stylesheet" th:href="@{styles.css}">
+    <script type="text/javascript">
+        function handleImageLoad(image) {
+            if (image.naturalWidth === 1 && image.naturalHeight === 1) {
+                image.src = 'noveleafnobook.png'; // Path to your fallback image
+            }
+        }
+    </script>
 </head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
@@ -16,25 +23,19 @@
             <td width="100px"><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${book.isbn} + '-M.jpg'"
                                    alt="cover"
                                    width="100px"
-                                   onload="handleImageLoad(this)"/></td>
+                                   onload="handleImageLoad(this)"
+                                   onerror="this.src='noveleafnobook.png'"/></td>
             <td valign="top" align="left">
-
                 Title: <span th:text="${book.title}"></span><br>
                 Author: <span th:text="${book.getAuthorNames()}"></span><br>
                 ISBN: <span th:text="${book.isbn}"></span>
-
             </td>
-
             <td width="100px">
                 Read<br>
                 Want to Read
-
             </td>
-
         </tr>
     </table>
-
-
 </div>
 <th:block th:insert="~{footer :: footer}"></th:block>
 </body>
