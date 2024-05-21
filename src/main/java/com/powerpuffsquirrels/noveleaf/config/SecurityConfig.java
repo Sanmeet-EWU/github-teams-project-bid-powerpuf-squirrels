@@ -24,7 +24,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/loginController")
+                        .loginPage("/login")
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll
@@ -32,4 +32,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }

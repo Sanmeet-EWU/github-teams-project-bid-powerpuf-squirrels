@@ -9,12 +9,13 @@
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
 <h2>Login</h2>
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
 <form action="#" th:action="@{/login}" method="post">
     <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br><br>
+    <input type="text" id="username" name="username" required placeholder="Username"><br><br>
 
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br><br>
+    <input type="password" id="password" name="password" required placeholder="Password"><br><br>
 
     <input type="submit" value="Login">
 </form>
