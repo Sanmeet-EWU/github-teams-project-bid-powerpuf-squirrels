@@ -32,15 +32,22 @@ public class loginController {
     public static boolean comparePass(String inputPass, String hashedPass) {
         return encoder.matches(inputPass, hashedPass);
     }
-    @GetMapping("/login")
-    public static void main(String[] args) {
+    @GetMapping("/login") // GetMapping is what runs when the user goes to the page
+    public String showPage(String[] args) {
         //nothing that was in here was correct. This needs to be getting information from the login.html file, not
         //scanners
+
+        //this is basically where any pre-processing that you need to do before getting the login data from the form
+        //That being said, I can't think of anything that we would need to do before getting the login data from the form
+
+        return "login"; //This String gets sent back to thyemleaf to tell it what page to display
     }
 //<<<<<<< Updated upstream
 
-    @PostMapping("/login")
+    @PostMapping("/login") //PostMapping is what runs when the user submits the form
     public String processLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
+        //this is what runs after they submit the form
+
         // hash the pass
         String hashedPass = hashPassword(password);
 
