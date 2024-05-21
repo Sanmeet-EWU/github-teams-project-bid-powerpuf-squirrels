@@ -1,7 +1,7 @@
 package com.powerpuffsquirrels.noveleaf.controller;
 
 import com.powerpuffsquirrels.noveleaf.DataTransferObj.AuthorDto;
-import com.powerpuffsquirrels.noveleaf.Service.imp.AuthorService;
+import com.powerpuffsquirrels.noveleaf.service.imp.AuthorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
-package com.powerpuffsquirrels.noveleaf.Service.imp;
+package com.powerpuffsquirrels.noveleaf.service.imp;
 import com.powerpuffsquirrels.noveleaf.DataTransferObj.AuthorDto;
 import com.powerpuffsquirrels.noveleaf.Mapping.AuthorMapper;
-import com.powerpuffsquirrels.noveleaf.Service.AuthorServInterface;
+import com.powerpuffsquirrels.noveleaf.service.AuthorServInterface;
 import com.powerpuffsquirrels.noveleaf.model.Author;
 import com.powerpuffsquirrels.noveleaf.repository.AuthorRepository;
 import org.springframework.stereotype.Service;

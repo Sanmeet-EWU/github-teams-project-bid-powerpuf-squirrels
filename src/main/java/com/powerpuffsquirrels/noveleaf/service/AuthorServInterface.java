@@ -1,7 +1,6 @@
-package com.powerpuffsquirrels.noveleaf.Service;
+package com.powerpuffsquirrels.noveleaf.service;
 
 import com.powerpuffsquirrels.noveleaf.DataTransferObj.AuthorDto;
-import com.powerpuffsquirrels.noveleaf.model.Author;
 
 import java.util.List;
 
