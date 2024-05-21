@@ -1,6 +1,7 @@
 package com.powerpuffsquirrels.noveleaf.service.imp;
 
 import com.powerpuffsquirrels.noveleaf.controller.CreateAccount;
+import com.powerpuffsquirrels.noveleaf.model.UserAccount;
 import com.powerpuffsquirrels.noveleaf.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,19 +14,16 @@ public class CreateAccountService {
     public CreateAccountService(UserAccountRepository userAccountRepository) {
         this.userAccountRepository = userAccountRepository;
     }
-    public CreateAccount createAccount(String username, String password) {
-        return null;
+    public boolean createAccount(String username, String hash) {
+        if(userAccountRepository.findByUsername(username) != null) {
+            System.out.println("username already exists");
+            return false;
+        } else {
+            UserAccount userAccount = new UserAccount();
+            userAccount.setUsername(username);
+            userAccount.setHash(hash);
+            userAccountRepository.save(userAccount);
+            return true;
+        }
     }
-
-    /*
-    build soemthing that will build ther create account entity. the object such match all the columns to a table.
-    the new account is an object, a useraccount object.
-    take controller, foreard that repo to this class. send back success if the username wasnt taken
-     */
-
-
-
-
-
-
 }

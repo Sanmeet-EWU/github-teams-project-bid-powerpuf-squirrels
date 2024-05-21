@@ -46,24 +46,8 @@ public class loginController {
 
         //pull the record for the user name from the user_id field from the user_account table using
 
-
-
         return "redirect:/";  // Redirect to a different page after login
     }
 
-
 }
-/*
-=======
-<<<<<<< Updated upstream
-}
-=======
-}
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-
- */
