@@ -6,12 +6,14 @@
 </head>
 <body>
 <h2>Create Account</h2>
-<form action="/create account" method="post">
-  <label>Create Account:</label>
-  <input type="text" id="createaccount" name="createaccount" required><br><br>
+<form action="/create-account" method="post" th:object="${userAccount}">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
 
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
 
-  <input type="submit" value="Create Account">
+    <input type="submit" value="Create Account">
 </form>
 </body>
 </html>

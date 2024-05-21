@@ -13,14 +13,16 @@ import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import com.powerpuffsquirrels.noveleaf.repository.UserAccountRepository;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 @Controller
 public class loginController {
-    //private static final String DB_URL = noveleafdb.ddns.net:3306;
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public static String hashPassword(String userPass) {
@@ -32,20 +34,20 @@ public class loginController {
     }
     @GetMapping("/login")
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter password: ");
-        String userPass = scanner.nextLine();
-        String hashedPass = hashPassword(userPass);
-        System.out.println("Hashed password: " + hashedPass);
-
-        System.out.println("Enter password again: ");
-        String inputPass = scanner.nextLine();
-        boolean matches = comparePass(inputPass, hashedPass);
-        if (matches) {
-            System.out.println("Good job logging in");
-        } else {
-            System.out.println("Wrong password try again");
-        }
-
+        //nothing that was in here was correct. This needs to be getting information from the login.html file, not
+        //scanners
     }
+//<<<<<<< Updated upstream
+
+    @PostMapping("/login")
+    public String processLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
+        // hash the pass
+        String hashedPass = hashPassword(password);
+
+        //pull the record for the user name from the user_id field from the user_account table using
+
+        return "redirect:/";  // Redirect to a different page after login
+    }
+
 }
+
