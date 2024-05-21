@@ -3,5 +3,8 @@ package com.powerpuffsquirrels.noveleaf.repository;
 import com.powerpuffsquirrels.noveleaf.model.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserAccountRepository extends JpaRepository<UserAccount, Integer>{
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<UserAccount, Integer>{
+    Optional<UserAccount> FindUser(String username, String password);
 }

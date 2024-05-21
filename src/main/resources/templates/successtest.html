@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Success</title>
+</head>
+<body>
+<h2>LoginInfo</h2>
+<p>Username: <span th:text="${user.getUsername()}"></span></p>
+<p>User ID: <span th:text="${user.getUserID()}"></span></p>
+<a th:href="@{/books}">view add books page?</a>
+</body>
+</html>
