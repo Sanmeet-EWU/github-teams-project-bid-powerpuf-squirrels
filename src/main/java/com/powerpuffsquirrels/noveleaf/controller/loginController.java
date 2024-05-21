@@ -37,6 +37,7 @@ public class loginController {
         //nothing that was in here was correct. This needs to be getting information from the login.html file, not
         //scanners
     }
+//<<<<<<< Updated upstream
 
     @PostMapping("/login")
     public String processLogin(@RequestParam("username") String username, @RequestParam("password") String password) {
@@ -52,3 +53,17 @@ public class loginController {
 
 
 }
+/*
+=======
+<<<<<<< Updated upstream
+}
+=======
+}
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+
+ */

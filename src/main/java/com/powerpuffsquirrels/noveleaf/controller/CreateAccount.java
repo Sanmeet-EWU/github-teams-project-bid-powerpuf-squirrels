@@ -1,23 +1,32 @@
 package com.powerpuffsquirrels.noveleaf.controller;
 
+import com.powerpuffsquirrels.noveleaf.model.UserAccount;
+import com.powerpuffsquirrels.noveleaf.repository.UserAccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
-import java.util.Scanner;
-
+@Controller
+@RequestMapping("/create-account")
 public class CreateAccount {
+    @Autowired
+    private UserAccountRepository userRepo;
 
-    public CreateAccount(String newUsername, String newPass) {
+    @GetMapping
+    public String createAccountForm() {
+        return "create-account-form";
     }
-    @GetMapping("/create account")
-    public static void newUserCred() {
-        System.out.println("Create username: ");
-        Scanner input = new Scanner(System.in);
-        String newUsername = input.nextLine();
-        System.out.println("Create a new password: ");
-        Scanner input2 = new Scanner(System.in);
-        String newPass = input.nextLine();
-        CreateAccount account1 = new CreateAccount(newUsername, newPass);
+
+    @PostMapping
+    public String createUser(@ModelAttribute UserAccount userAccount){
+        // save to database here
+        return  "redirect:/login";
     }
+
+
 
 
 
