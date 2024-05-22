@@ -1,8 +1,10 @@
 package com.powerpuffsquirrels.noveleaf.controller;
 
+import com.powerpuffsquirrels.noveleaf.DataTransferObj.UserDto;
 import com.powerpuffsquirrels.noveleaf.model.Book;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +22,11 @@ public class SearchController {
     private RestTemplate restTemplate;
 
     @GetMapping("/search")
-    public String searchBooks(@RequestParam(name = "q", required = false) String query, Model model) {
+    public String searchBooks(@RequestParam(name = "q", required = false) String query, Model model, HttpSession session) {
+
+        //This will allow us to display different elements based on whether the user is logged in
+        model.addAttribute("userAccount", (UserDto) session.getAttribute("user"));
+
         if (query != null && !query.isEmpty()) {
             String url = "https://openlibrary.org/search.json?q=" + query;
             String jsonResponse = restTemplate.getForObject(url, String.class);

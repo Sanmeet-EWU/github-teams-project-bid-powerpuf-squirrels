@@ -53,11 +53,16 @@ public class ReadShelfController {
 
     @GetMapping("/readshelf")
     public String loadBooks(ReadShelfRepository readShelfRepository, AuthorRepository AuthorRepo, BookRepository BookRepo, BookAuthorRepository BookAuthRepo, Model model, HttpSession session) {
-       UserDto user = (UserDto) session.getAttribute("user");
+        UserDto user = (UserDto) session.getAttribute("user");
+        model.addAttribute("userAccount", (UserDto) session.getAttribute("user"));
+        if (user == null) {
+            return "login";
+        }
 
         //Too lazy to change constructor object for readshelf :)
         this.userAccount = new UserAccount();
         this.userAccount.setUserID(user.getUserID());
+        this.userAccount.setUsername(user.getUsername());
 
         //build ReadShelf, which will be done automatically in the readShelf constructor
         this.readShelf = new ReadShelf(this.userAccount, readShelfService, authorService, bookService, bookAuthorService); //and this
@@ -67,6 +72,9 @@ public class ReadShelfController {
         List<ReadShelfItem> readShelfItems = readShelf.getItems();
 
         model.addAttribute("readShelfItems", readShelfItems);
+
+
+
 
         return "readshelf";
     }

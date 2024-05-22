@@ -1,6 +1,6 @@
 <header>
     <img src="https://i.imgur.com/zRda5uX.png" alt="Noveleaf" style="width: 100px; display: inline-block; margin-left: 10px;">
-    <table width="100%" border="0px" cellpadding="0">
+    <table th:if="${userAccount == null}" width="100%" border="0px" cellpadding="0">
         <tr>
             <td>
                 <a href="/" class="button">Home</a>
@@ -11,7 +11,29 @@
                 <a href="/create-account" class="button">Register</a>
                 <a href="/login" class="button">Login</a>
             </td>
-            <td align="right" width="550px">
+            <td align="right" width="410px">
+                <form action="#" th:action="@{/search}" method="get" style="margin-left: 10px">
+                    <input type="text" name="q" placeholder="Search" style="padding: 10px;"/>
+                    <button type="submit" style="padding: 10px;">Search</button>
+                </form>
+
+            </td>
+        </tr>
+    </table>
+
+
+    <table th:if="${userAccount != null}" width="100%" border="0px" cellpadding="0">
+        <tr>
+            <td>
+                <a href="/" class="button">Home</a>
+                <a href="/search" class="button">Search</a>
+                <a href="/readshelf" class="button">Read Shelf</a>
+            </td>
+            <td align="right">
+                Hello, <b><span th:text="${userAccount.username}">!</span></b>
+                <a href="/logout" class="button">Logout</a>
+            </td>
+            <td align="right" width="410px">
                 <form action="#" th:action="@{/search}" method="get" style="margin-left: 10px">
                     <input type="text" name="q" placeholder="Search" style="padding: 10px;"/>
                     <button type="submit" style="padding: 10px;">Search</button>
