@@ -9,7 +9,7 @@
 </head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
-<br><br> <br><br>
+
 <p th:if="${error}" th:text="${error}" style="color: red;"></p>
 <form class="login-form" action="#" th:action="@{/create-account}" method="post">
     <h2>Create Account</h2>

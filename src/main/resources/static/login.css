@@ -8,5 +8,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     width: 400px; /* Set the width */
-    margin: auto; /* Center horizontally */
+    margin: 20px auto;
 }
+
