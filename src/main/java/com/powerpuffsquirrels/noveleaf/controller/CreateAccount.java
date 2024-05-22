@@ -19,7 +19,7 @@ public class CreateAccount {
 
     @GetMapping
     public String createAccountForm() {
-        return "create-account";
+        return "createaccount";
     }
 
     @PostMapping

@@ -31,24 +31,6 @@ public class UserAccountService implements IUserAccountService {
         return encoder.encode(password);
     }
 
-
-/*    @Override
-    public UserDto FindUser(String username, String password) {
-
-        UserAccount exampleUser = UserAccount.builder().username(username).build();
-        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("userID").withIgnorePaths("hash").withMatcher("username", ExampleMatcher.GenericPropertyMatchers.exact());
-        Example<UserAccount> searchExample = Example.of(exampleUser, matcher);
-
-        List<UserAccount> users = userRepository.findAll(searchExample);
-
-        if (users.isEmpty() || !encoder.matches(password, users.get(0).getHash())) return null;
-
-        UserAccount user = users.get(0);//this will only have one item if usernames are unique
-        return UserAccountToDto(user);
-    }*/
-
-    //redundant with david's implementation
-
     private UserDto UserAccountToDto(UserAccount user){
         return UserDto.builder()
                 .UserID(user.getUserID())
@@ -64,9 +46,6 @@ public class UserAccountService implements IUserAccountService {
         return null;
     }
 
-
-    //this feels like a clumsy implementation to me, I certainly don't want every controller to have to call instantiate this class
-    //so this method will have to find a new home later, or a new implementation
     public boolean LoggedIn(HttpSession Session){
         if(Session.getAttribute("user") == null) return false;
         return true;

@@ -1,11 +1,9 @@
 package com.powerpuffsquirrels.noveleaf.DataTransferObj;
 
-//transfer these around between processes instead of User objects so we don't pass round the hash unnecessarily
-
-
 import lombok.Builder;
 import lombok.Data;
 
+//transfer these around between processes instead of User objects, so we don't pass around the hash unnecessarily
 @Data
 @Builder
 public class UserDto {

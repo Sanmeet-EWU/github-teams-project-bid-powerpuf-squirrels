@@ -10,7 +10,6 @@ public interface UserAccountRepository extends JpaRepository<UserAccount, Intege
 
     @Query("SELECT user FROM UserAccount user WHERE user.username = :username AND user.hash = :hash")
     UserAccount findAccount(String username, String hash);
-
     UserAccount findByUsername(String username);
 
 }
