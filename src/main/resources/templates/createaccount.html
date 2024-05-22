@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
     <link rel="stylesheet" th:href="@{styles.css}">
+    <link rel="stylesheet" th:href="@{login.css}">
 </head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
-<h2>Create Account</h2>
+<br><br> <br><br>
 <p th:if="${error}" th:text="${error}" style="color: red;"></p>
-<form action="#" th:action="@{/create-account}" method="post">
+<form class="login-form" action="#" th:action="@{/create-account}" method="post">
+    <h2>Create Account</h2>
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required placeholder="Username"><br><br>
 
