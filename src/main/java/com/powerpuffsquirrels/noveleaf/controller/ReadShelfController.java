@@ -1,5 +1,6 @@
 package com.powerpuffsquirrels.noveleaf.controller;
 
+import com.powerpuffsquirrels.noveleaf.DataTransferObj.UserDto;
 import com.powerpuffsquirrels.noveleaf.model.Book;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,12 +13,16 @@ import com.powerpuffsquirrels.noveleaf.service.imp.AuthorService;
 import com.powerpuffsquirrels.noveleaf.service.imp.BookAuthorService;
 import com.powerpuffsquirrels.noveleaf.service.imp.BookService;
 import com.powerpuffsquirrels.noveleaf.service.imp.ReadShelfService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+
+//import HttpSession
+
 
 import com.powerpuffsquirrels.noveleaf.service.shelves.*;
 
@@ -47,16 +52,19 @@ public class ReadShelfController {
 
 
     @GetMapping("/readshelf")
-    public String loadBooks(ReadShelfRepository readShelfRepository, AuthorRepository AuthorRepo, BookRepository BookRepo, BookAuthorRepository BookAuthRepo, Model model) {
+    public String loadBooks(ReadShelfRepository readShelfRepository, AuthorRepository AuthorRepo, BookRepository BookRepo, BookAuthorRepository BookAuthRepo, Model model, HttpSession session) {
+       UserDto user = (UserDto) session.getAttribute("user");
+       //System.out.println(user.getUserID());
+
         //this.readShelfRepository = readShelfRepository; //this is just tempory, will be deleted later
         /**
          * I imagine we are going to need to get the session of the user account that is logged in,
          * then we will need to build the user account, which we can pull the user_id from to build the read shelf
          */
 
-        //since login is still WIP, I am just building this manually
+        //Too lazy to change constructor object for readshelf :)
         this.userAccount = new UserAccount();
-        this.userAccount.setUserID(123);
+        this.userAccount.setUserID(user.getUserID());
 
         //build ReadShelf, which will be done automatically in the readShelf constructor
         this.readShelf = new ReadShelf(this.userAccount, readShelfService, authorService, bookService, bookAuthorService); //and this
