@@ -54,13 +54,6 @@ public class ReadShelfController {
     @GetMapping("/readshelf")
     public String loadBooks(ReadShelfRepository readShelfRepository, AuthorRepository AuthorRepo, BookRepository BookRepo, BookAuthorRepository BookAuthRepo, Model model, HttpSession session) {
        UserDto user = (UserDto) session.getAttribute("user");
-       //System.out.println(user.getUserID());
-
-        //this.readShelfRepository = readShelfRepository; //this is just tempory, will be deleted later
-        /**
-         * I imagine we are going to need to get the session of the user account that is logged in,
-         * then we will need to build the user account, which we can pull the user_id from to build the read shelf
-         */
 
         //Too lazy to change constructor object for readshelf :)
         this.userAccount = new UserAccount();
