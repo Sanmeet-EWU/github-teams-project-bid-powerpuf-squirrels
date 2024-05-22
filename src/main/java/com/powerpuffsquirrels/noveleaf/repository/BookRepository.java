@@ -3,7 +3,8 @@ package com.powerpuffsquirrels.noveleaf.repository;
 import com.powerpuffsquirrels.noveleaf.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookRepository extends JpaRepository<Book, Long> {
+public interface BookRepository extends JpaRepository<Book, String> {
+    Book findByIsbn(String isbn);
     // You can define custom query methods here if needed, but Spring Data JPA will provide most of the basic CRUD operations
 
 }

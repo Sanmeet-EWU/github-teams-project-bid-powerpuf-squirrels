@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -20,7 +21,7 @@ public class Book {
     private String genre;
 
     @OneToMany(mappedBy = "book")
-    private List<BookAuthor> bookAuthors;
+    private List<BookAuthor> bookAuthors = new ArrayList<>();
 
     public String getAuthorNames() {
         StringBuilder authorNames = new StringBuilder();
@@ -34,13 +35,10 @@ public class Book {
     }
 
     public void addAuthor(String fullname) {
-        String[] names = fullname.split(" ");// since we are now storing first and last name separately, we need to split the full name
-
-        // Determine the first name and last name
-        String firstName = (names.length > 0 && !names[0].isEmpty()) ? names[0] : "N/A"; //throws errors if its empty
+        String[] names = fullname.split(" ");
+        String firstName = (names.length > 0 && !names[0].isEmpty()) ? names[0] : "N/A";
         String lastName = (names.length > 1 && !names[1].isEmpty()) ? names[1] : "N/A";
 
-        // I hate builders
         Author author = Author.builder()
                 .firstName(firstName)
                 .lastName(lastName)
@@ -51,8 +49,6 @@ public class Book {
                 .book(this)
                 .build();
 
-        // Add the BookAuthor to the list
         bookAuthors.add(bookAuthor);
     }
-
 }

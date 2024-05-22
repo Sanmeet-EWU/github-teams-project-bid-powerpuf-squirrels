@@ -11,6 +11,8 @@ import lombok.*;
 @Table(name = "user_account")
 public class UserAccount {
     @Id
+    @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private Integer userID; // Primary key

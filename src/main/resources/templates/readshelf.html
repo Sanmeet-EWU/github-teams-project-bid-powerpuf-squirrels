@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Home Page</title>
+  <link rel="stylesheet" th:href="@{styles.css}">
+  <script type="text/javascript">
+    function handleImageLoad(image) {
+      if (image.naturalWidth === 1 && image.naturalHeight === 1) {
+        image.src = 'noveleafnobook.png'; // Path to your fallback image
+      }
+    }
+  </script>
+</head>
+<body>
+<th:block th:insert="~{header :: header}"></th:block>
+<h1>My Read Books</h1>
+
+<div th:if="${readShelfItems != null}">
+  <table width="80%" th:each="entity : ${readShelfItems}">
+    <tr>
+      <td width="100px"><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${entity.isbn} + '-M.jpg'"
+                             alt="cover"
+                             width="100px"
+                             onload="handleImageLoad(this)"
+                             onerror="this.src='noveleafnobook.png'"/></td>
+      <td valign="top" align="left">
+        Title: <span th:text="${entity.title}"></span><br>
+        Author: <span th:text="${entity.authors}"></span><br>
+        ISBN: <span th:text="${entity.isbn}"></span><br>
+        Rating: <span th:text="${entity.rating}"></span>/5
+      </td>
+      <td width="100px">
+      </td>
+    </tr>
+  </table>
+</div>
+<th:block th:insert="~{footer :: footer}"></th:block>
+</body>
+</html>
