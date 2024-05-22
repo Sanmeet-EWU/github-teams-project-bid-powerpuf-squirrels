@@ -29,13 +29,13 @@ public class LoginController {
     public LoginController (UserAccountService userService){this.userService = userService;}
 
 /*    @GetMapping( "/")
-    public String login(HttpSession session) {
+    public String loginHomepage(HttpSession session) {
         if(userService.LoggedIn(session)) return "index";
         return "login";
     }*/
 
     @GetMapping("/login")
-    public String loginHomePage(HttpSession session) {
+    public String login(HttpSession session) {
         return "login";
     }
 
