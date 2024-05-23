@@ -50,7 +50,7 @@ public class HomeController {
          */
 
 
-        return "index";// index.html
 
+        return "index";// index.html
     }
 }

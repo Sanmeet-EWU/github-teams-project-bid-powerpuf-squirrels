@@ -22,30 +22,28 @@
 <h1>Search Books</h1>
 
 <div th:if="${books != null}">
-    <table width="80%" th:each="book, iter : ${books}">
-        <tr>
-            <td width="100px">
-                <img th:src="'https://covers.openlibrary.org/b/isbn/' + ${book.isbn} + '-M.jpg'"
+    <ul class="display-books">
+        <li th:each="book, iter : ${books}">
+            <div class="book-item">
+                <img class="book-cover" th:src="'https://covers.openlibrary.org/b/isbn/' + ${book.isbn} + '-M.jpg'"
                      alt="cover"
-                     width="100px"
+                     width="160px"
                      onload="handleImageLoad(this)"
                      onerror="this.src='noveleafnobook.png'"/>
-            </td>
-            <td valign="top" align="left">
-                Title: <span th:text="${book.title}"></span><br>
-                Author: <span th:text="${book.getAuthorNames()}"></span><br>
-                ISBN: <span th:text="${book.isbn}"></span>
-            </td>
-            <td width="100px">
-                <form id="searchForm" th:action="@{/search}" method="post">
+                <form th:if="${userAccount != null}" id="searchForm" th:action="@{/search}" method="post">
                     <input type="hidden" name="index" th:value="${iter.index}" />
                     <button type="submit">Read</button>
-                </form><br>
-                Want to Read
-            </td>
-        </tr>
-    </table>
+                </form>
+                <span th:text="${book.title}"></span>
+                <span th:text="${book.getAuthorNames()}"></span>
+            </div>
+        </li>
+    </ul>
 </div>
+
+
+
+
 <th:block th:insert="~{footer :: footer}"></th:block>
 </body>
 </html>
