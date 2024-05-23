@@ -7,6 +7,7 @@ import com.powerpuffsquirrels.noveleaf.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,9 @@ public class AuthorService implements AuthorServInterface {
 
     @Autowired
     private AuthorRepository author_repo;
+
+    @Autowired
+    private AuthorRepository authorRepository;
 
 //    public AuthorService(AuthorRepository author_repo) {
 //        this.author_repo = author_repo;
@@ -36,7 +40,12 @@ public class AuthorService implements AuthorServInterface {
         }
 
 
-
-
+    public void addAuthor(Author author) {
+        if (author_repo.findByFirstNameAndLastName(author.getFirstName(), author.getLastName()).isPresent()) {
+            //Do nothing
+        }else{
+            author_repo.save(author);
+        }
+    }
 }
 

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface BookAuthorRepository extends JpaRepository<BookAuthor, String> {
+public interface BookAuthorRepository extends JpaRepository<BookAuthor, BookAuthor.BookAuthorID> {
 //    //find list of books by isbn
     //List<BookAuthor> findByisbn(String isbn);
 

@@ -19,4 +19,13 @@ public class ReadShelfService {
     public List<ReadShelfEntity> getReadShelvesByUserId(int userId) {
         return readShelfRepository.findByUserId(userId);
     }
+
+    //add to read shelf by String isbn
+    public void addReadShelfItem(String isbn, int userId) {
+        ReadShelfEntity readShelfEntity = new ReadShelfEntity();
+        readShelfEntity.setIsbn(isbn);
+        readShelfEntity.setUserId(userId);
+        readShelfEntity.setDateAdded(new java.sql.Date(System.currentTimeMillis()));
+        readShelfRepository.save(readShelfEntity);
+    }
 }

@@ -25,6 +25,10 @@ public class BookAuthor {
     @JoinColumn(name = "author_id", referencedColumnName = "author_id", nullable = false)
     private Author author;
 
+    public int getAuthorId() {
+        return author.getAuthorID();
+    }
+
     @Getter
     @EqualsAndHashCode
     @NoArgsConstructor
@@ -32,5 +36,9 @@ public class BookAuthor {
     public static class BookAuthorID implements Serializable {
         private String book;
         private Integer author;
+    }
+
+    public String getIsbn() {
+        return book.getIsbn();
     }
 }

@@ -5,33 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Home Page</title>
     <link rel="stylesheet" th:href="@{styles.css}">
+    <link rel="stylesheet" th:href="@{popup.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" th:src="@{popup.js}"></script>
     <script type="text/javascript">
         function handleImageLoad(image) {
             if (image.naturalWidth === 1 && image.naturalHeight === 1) {
-                image.src = 'noveleafnobook.png'; // Path to your fallback image
+                image.src = 'noveleafnobook.png'; //fall back image
             }
         }
     </script>
 </head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
+
 <h1>Search Books</h1>
 
 <div th:if="${books != null}">
-    <table width="80%" th:each="book : ${books}">
+    <table width="80%" th:each="book, iter : ${books}">
         <tr>
-            <td width="100px"><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${book.isbn} + '-M.jpg'"
-                                   alt="cover"
-                                   width="100px"
-                                   onload="handleImageLoad(this)"
-                                   onerror="this.src='noveleafnobook.png'"/></td>
+            <td width="100px">
+                <img th:src="'https://covers.openlibrary.org/b/isbn/' + ${book.isbn} + '-M.jpg'"
+                     alt="cover"
+                     width="100px"
+                     onload="handleImageLoad(this)"
+                     onerror="this.src='noveleafnobook.png'"/>
+            </td>
             <td valign="top" align="left">
                 Title: <span th:text="${book.title}"></span><br>
                 Author: <span th:text="${book.getAuthorNames()}"></span><br>
                 ISBN: <span th:text="${book.isbn}"></span>
             </td>
             <td width="100px">
-                Read<br>
+                <form id="searchForm" th:action="@{/search}" method="post">
+                    <input type="hidden" name="index" th:value="${iter.index}" />
+                    <button type="submit">Read</button>
+                </form><br>
                 Want to Read
             </td>
         </tr>

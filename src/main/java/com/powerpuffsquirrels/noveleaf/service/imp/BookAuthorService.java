@@ -19,4 +19,11 @@ public class BookAuthorService {
         return bookAuthorRepository.findByBookIsbn(isbn);
     }
 
+    public void addBookAuthors(List<BookAuthor> bookAuthors) {
+        bookAuthorRepository.saveAll(bookAuthors);
+    }
+
+    public void addBookAuthor(BookAuthor bookAuthor) {
+        bookAuthorRepository.save(bookAuthor);
+    }
 }

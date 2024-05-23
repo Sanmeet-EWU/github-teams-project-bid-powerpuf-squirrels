@@ -23,6 +23,10 @@ public class Book {
     @OneToMany(mappedBy = "book")
     private List<BookAuthor> bookAuthors = new ArrayList<>();
 
+//    public List<BookAuthor> getBookAuthorList() {
+//        return bookAuthors;
+//    }
+
     public String getAuthorNames() {
         StringBuilder authorNames = new StringBuilder();
         for (BookAuthor bookAuthor : bookAuthors) {
@@ -50,5 +54,18 @@ public class Book {
                 .build();
 
         bookAuthors.add(bookAuthor);
+    }
+
+    public List<Author> getAuthors() {
+        List<Author> authors = new ArrayList<>();
+        for (BookAuthor bookAuthor : bookAuthors) {
+            authors.add(bookAuthor.getAuthor());
+        }
+        return authors;
+    }
+
+    public void addBookAuthor(BookAuthor bookAuthor) {
+        bookAuthors.add(bookAuthor);
+
     }
 }
