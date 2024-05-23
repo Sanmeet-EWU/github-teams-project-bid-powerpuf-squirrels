@@ -51,7 +51,7 @@ public class LoginController {
 
         session.setAttribute("user", user);
         model.addAttribute("user", user);
-        return "index";
+        return "login-success";
     }
 }
 
