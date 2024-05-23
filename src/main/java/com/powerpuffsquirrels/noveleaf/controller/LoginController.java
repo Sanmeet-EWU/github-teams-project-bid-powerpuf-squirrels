@@ -53,5 +53,11 @@ public class LoginController {
         model.addAttribute("user", user);
         return "login-success";
     }
+
+    @GetMapping("/logout")
+    public String logOut( HttpSession session) {
+        session.removeAttribute("user");
+        return "logout-success";
+    }
 }
 
