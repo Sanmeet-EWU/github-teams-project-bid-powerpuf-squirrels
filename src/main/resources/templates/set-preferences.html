@@ -3,28 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" th:href="@{/styles.css}">
-    <link rel="stylesheet" th:href="@{/login.css}">
+    <title>Create Account</title>
+    <link rel="stylesheet" th:href="@{styles.css}">
+    <link rel="stylesheet" th:href="@{login.css}">
 </head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
 
 <p th:if="${error}" th:text="${error}" style="color: red;"></p>
-<div  th:if="${param.error}">
-    <p style="color: darkorange;">Please log in!</p>
-</div>
-<form class="login-form" action="#" th:action="@{/login}" method="post">
-    <h2>Login</h2>
+<form class="login-form" action="#" th:action="@{/create-account/preferences}" method="post">
+    <h2>Create Account</h2>
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required placeholder="Username"><br><br>
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required placeholder="Password"><br><br>
 
-    <input type="submit" value="Login">
-    <br><br>
-    Don't have an account? <a href="/create-account" class="button">Register</a>
+    <input type="submit" value="Create Account">
 </form>
 <th:block th:insert="~{footer :: footer}"></th:block>
 </body>

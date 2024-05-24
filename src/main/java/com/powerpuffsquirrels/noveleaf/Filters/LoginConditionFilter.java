@@ -10,6 +10,7 @@ import java.util.List;
 public class LoginConditionFilter implements Filter {
 
     private final List<String> whitelist = Arrays.asList("/login","/logout","/create-account");
+    private final List<String> statics = Arrays.asList(".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".woff", ".ttf");
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -19,13 +20,17 @@ public class LoginConditionFilter implements Filter {
         String requestURI = request.getRequestURI();
 
         boolean isWhitelisted = whitelist.stream().anyMatch(requestURI::startsWith);
+        boolean isStatic = statics.stream().anyMatch(requestURI::endsWith);
 
-        if(!isWhitelisted && request.getSession().getAttribute("user") == null){
+        if(isWhitelisted || isStatic)  filterChain.doFilter(request, response);
+
+        if(request.getSession().getAttribute("user") == null){
 
             if(requestURI.equals("/")) response.sendRedirect(request.getContextPath()+"/login");
             else response.sendRedirect(request.getContextPath()+"/login?error=true");
             return;
         }
+
 
         filterChain.doFilter(request, response);
 

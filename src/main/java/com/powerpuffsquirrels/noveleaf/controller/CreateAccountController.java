@@ -29,5 +29,10 @@ public class CreateAccountController {
         return "createaccount";
     }
 
+    @GetMapping("/create-account/preferences")
+    public String createPreferencesForm() {
+        return "set-preferences";
+    }
+
     
 }
