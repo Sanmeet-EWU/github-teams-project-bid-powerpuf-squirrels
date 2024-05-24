@@ -15,26 +15,64 @@
 </head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
+<div class="container">
+
 <h1>My Read Books</h1>
 
-<div th:if="${readShelfItems != null}">
-  <table width="80%" th:each="entity : ${readShelfItems}">
-    <tr>
-      <td width="100px"><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${entity.isbn} + '-M.jpg'"
-                             alt="cover"
-                             width="100px"
-                             onload="handleImageLoad(this)"
-                             onerror="this.src='noveleafnobook.png'"/></td>
-      <td valign="top" align="left">
-        Title: <span th:text="${entity.title}"></span><br>
-        Author: <span th:text="${entity.authors}"></span><br>
-        ISBN: <span th:text="${entity.isbn}"></span><br>
-        Rating: <span th:text="${entity.rating}"></span>/5
-      </td>
-      <td width="100px">
-      </td>
-    </tr>
-  </table>
+<!--  Old code. Not sure if I might need anything from here, so leaving it for now-->
+<!--<div th:if="${readShelfItems != null}">-->
+<!--  <table width="80%" th:each="entity : ${readShelfItems}">-->
+<!--    <tr>-->
+<!--      <td width="100px"><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${entity.isbn} + '-M.jpg'"-->
+<!--                             alt="cover"-->
+<!--                             width="100px"-->
+<!--                             onload="handleImageLoad(this)"-->
+<!--                             onerror="this.src='noveleafnobook.png'"/></td>-->
+<!--      <td valign="top" align="left">-->
+<!--        Title: <span th:text="${entity.title}"></span><br>-->
+<!--        Author: <span th:text="${entity.authors}"></span><br>-->
+<!--        ISBN: <span th:text="${entity.isbn}"></span><br>-->
+<!--        Rating: <span th:text="${entity.rating}"></span>/5-->
+<!--      </td>-->
+<!--      <td width="100px">-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </table>-->
+<!--</div>-->
+
+
+
+  <div th:if="${readShelfItems != null}">
+    <ul class="display-books">
+      <li th:each="entity, iter : ${readShelfItems}">
+        <div class="book-item">
+          <img class="book-cover" th:src="'https://covers.openlibrary.org/b/isbn/' + ${entity.isbn} + '-M.jpg'"
+               alt="cover"
+               width="160px"
+               onload="handleImageLoad(this)"
+               onerror="this.src='noveleafnobook.png'"/>
+<!--          <form th:if="${userAccount != null}" id="searchForm" th:action="@{/search}" method="post">-->
+<!--            <input type="hidden" name="index" th:value="${iter.index}" />-->
+<!--            <button type="submit">Read</button>-->
+<!--          </form>-->
+          <span th:text="${entity.title}"></span>
+          <span th:text="${entity.authors}"></span>
+<!--          <span th:text="${entity.isbn}"></span>-->
+      <div class="dont-flex-down">
+          <span th:text="${entity.rating}"></span>/5</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+
+
+
+
+
+
+
 </div>
 <th:block th:insert="~{footer :: footer}"></th:block>
 </body>

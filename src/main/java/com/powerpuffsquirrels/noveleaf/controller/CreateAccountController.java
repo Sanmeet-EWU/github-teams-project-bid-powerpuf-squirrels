@@ -24,7 +24,7 @@ public class CreateAccountController {
 
     @PostMapping("/create-account")
     public String createUser(@RequestParam String username, @RequestParam String password, Model model){
-        if(createService.createAccount(username,password)) return "redirect:/login";
+        if(createService.createAccount(username,password)) return "/login";//redirect caused an error
         model.addAttribute("error", String.format("Account creation failed, %s is taken", username));
         return "createaccount";
     }

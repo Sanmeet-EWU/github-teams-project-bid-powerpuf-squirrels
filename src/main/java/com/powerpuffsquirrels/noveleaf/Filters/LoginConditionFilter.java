@@ -11,6 +11,7 @@ public class LoginConditionFilter implements Filter {
 
     private final List<String> whitelist = Arrays.asList("/login","/logout","/create-account");
     private final List<String> statics = Arrays.asList(".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".woff", ".ttf");
+    //private final List<String> statics = Arrays.asList("/css/","/image/","/js/"); //doesn't work :|
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -21,6 +22,7 @@ public class LoginConditionFilter implements Filter {
 
         boolean isWhitelisted = whitelist.stream().anyMatch(requestURI::startsWith);
         boolean isStatic = statics.stream().anyMatch(requestURI::endsWith);
+        //boolean isStatic = statics.stream().anyMatch(requestURI::contains);
 
         if(isWhitelisted || isStatic)  filterChain.doFilter(request, response);
 

@@ -10,18 +10,37 @@ body {
 }
 
 header {
-    background-color: #004b2f;
+    /*background-color: #004b2f;*/
     color: white;
-    padding: 10px 0;
+    padding: 0px 0;
     text-align: left;
     width: 100%;
     margin-top: 0;
 }
 
+.banner {
+    /*background-color: #004b2f;*/
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .container {
+    flex: 1;
     width: 80%;
     margin-top: 10px;
     padding: 20px;
+    /* center the container */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
 }
 
 label, input {
@@ -32,16 +51,25 @@ label, input {
 
 .button {
     display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: #009c6c;
-    color: white;
+    padding: 0px 0px;
+    margin: 8px;
+    /*background-color: #009c6c;*/
+    background-color: transparent;
+    color: #2d0600;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 0px;
+    font-weight: 700;
 }
 
 .button:hover {
-    background-color: #007a54;
+    /*background-color: #007a54;*/
+    /*text-shadow: black 1px 1px 1px;*/
+
+    /*https://html-css-js.com/css/generator/text-shadow/*/
+    color: transparent;
+    background: #2d0600;
+    background-clip: text;
+    text-shadow: 0px 3px 3px rgba(255,255,255,0.5);
 }
 
 footer {
@@ -49,7 +77,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
+    /*position: fixed;*/
     bottom: 0;
     width: 100%;
 }
@@ -79,10 +107,6 @@ footer {
     text-align: center;
 }
 
-.book-item img {
-    margin-bottom: 10px;
-}
-
 .book-item span {
     margin-top: 10px;
 }
@@ -92,4 +116,35 @@ footer {
     height: 213px;
     object-fit: cover; /* This will ensure the image is resized and cropped to fit the dimensions */
     margin-bottom: 10px;
+    box-shadow: -1px 1px 13px -3px rgba(0,0,0,0.59);
+}
+
+.book-item dont-flex-down {
+    flex: 0 0 auto;
+    margin-top: 10px;
+}
+
+.banner-object {
+    /*height: 306px;*/
+    height: 200px;
+    width: 98%;
+    object-fit: cover;
+    border-radius: 14px;
+    /*center the image*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*drop shadow. Nice shadow value generator: https://www.cssmatic.com/box-shadow*/
+    box-shadow: -7px 11px 40px -3px rgba(0,0,0,0.50);
+}
+
+/*css for the search bar*/
+.search-bar {
+    justify-content: center;
+    /* width of 100px*/
+    width: 200px;
+    /*center vertically*/
+    margin-top: auto;
+    margin-bottom: auto;
+
 }
