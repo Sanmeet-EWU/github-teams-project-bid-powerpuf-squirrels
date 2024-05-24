@@ -50,6 +50,7 @@ public class LoginController {
         }
 
         session.setAttribute("user", user);
+        session.setAttribute("userID", user.getUserID());
         model.addAttribute("user", user);
         return "login-success";
     }
