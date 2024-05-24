@@ -73,7 +73,7 @@ label, input {
 }
 
 footer {
-    background-color: #004b2f;
+    background-color: #001a11;
     color: white;
     text-align: center;
     padding: 10px 0;
@@ -124,6 +124,13 @@ footer {
     margin-top: 10px;
 }
 
+.banner-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .banner-object {
     /*height: 306px;*/
     height: 200px;
@@ -136,6 +143,15 @@ footer {
     margin-right: auto;
     /*drop shadow. Nice shadow value generator: https://www.cssmatic.com/box-shadow*/
     box-shadow: -7px 11px 40px -3px rgba(0,0,0,0.50);
+}
+
+.banner-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(280px, -50%); /* Move the logo 100px to the right of center */
+    width: 170px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
 }
 
 /*css for the search bar*/
