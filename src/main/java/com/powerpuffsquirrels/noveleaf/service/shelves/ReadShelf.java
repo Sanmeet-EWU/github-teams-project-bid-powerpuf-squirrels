@@ -25,6 +25,10 @@ public class ReadShelf implements Bookshelf {
         this.UserAccount = UserAccount;
 
         List<ReadShelfEntity> readShelfEntities = readShelfService.getReadShelvesByUserId(UserAccount.getUserID());
+        if (readShelfEntities.isEmpty()){
+            return;
+        }
+
         System.out.println("isbn is " + readShelfEntities.get(0).getIsbn());
 
 
@@ -32,6 +36,8 @@ public class ReadShelf implements Bookshelf {
 
         //for every readShelfEntities, call readShelfItems.add(readShelfEntity)
         //will need the readShelfEntity, Author, and Book entities.
+
+
         for (int i = 0; readShelfEntities.size() > i; i++){
             readShelfItems.add(new ReadShelfItem(readShelfEntities.get(i), authorService, bookService, bookAuthorService));
         }
