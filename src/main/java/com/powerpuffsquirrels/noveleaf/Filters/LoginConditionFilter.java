@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LoginConditionFilter implements Filter {
 
-    private final List<String> whitelist = Arrays.asList("/login","/logout","/create-account", "/index", "/search",
+    private final List<String> whitelist = Arrays.asList("/login","/logout","/create-account", "/", "/search",
             "/header", "/footer", "/styles.css", "/noveleaf-text.png", "/noveleaf-banner-object.png", "noveleafnobook.png", "popup.js", "popup.css", "login.css", "redirect-message.css" );
 
     @Override

@@ -1,8 +1,8 @@
 <header>
-
-    <table th:if="${userAccount == null}" width="80%" border="0px" cellpadding="0">
+    <div class="banner">
+    <table th:if="${userAccount == null}" border="0px" cellpadding="0" width="100%">
         <tr>
-            <td><img th:src="noveleaf-text.png" alt="Noveleaf" style="width: 100px; display: inline-block; margin-left: 10px;"></td>
+            <td width="101"><img th:src="noveleaf-text.png" alt="Noveleaf" style="width: 100px; display: inline-block; margin-left: 10px;"></td>
             <td>
                 <a href="/" class="button">Home</a>
                 <a href="/search" class="button">Search</a>
@@ -12,9 +12,9 @@
                 <a href="/create-account" class="button">Register</a>
                 <a href="/login" class="button">Login</a>
             </td>
-            <td align="right" width="410px">
+            <td align="right" width="320px">
                 <form action="#" th:action="@{/search}" method="get" style="margin-left: 10px">
-                    <input type="text" name="q" placeholder="Search" style="padding: 10px;"/>
+                    <input class="search-bar" type="text" name="q" placeholder="Search" style="padding: 10px;"/>
                     <button type="submit" style="padding: 10px;">Search</button>
                 </form>
 
@@ -23,7 +23,7 @@
     </table>
 
 
-        <table th:if="${userAccount != null}" width="80%" border="0px" cellpadding="0">
+        <table th:if="${userAccount != null}" border="0px" cellpadding="0" width="100%">
             <tr>
                 <td><img th:src="noveleaf-text.png" alt="Noveleaf" style="width: 100px; display: inline-block; margin-left: 10px;"></td>
                 <td>
@@ -38,14 +38,14 @@
                 </td>
                 <td align="right" width="410px">
                     <form action="#" th:action="@{/search}" method="get" style="margin-left: 10px">
-                        <input type="text" name="q" placeholder="Search" style="padding: 10px;"/>
+                        <input class="search-bar" type="text" name="q" placeholder="Search" style="padding: 10px;"/>
                         <button type="submit" style="padding: 10px;">Search</button>
                     </form>
 
                 </td>
             </tr>
         </table>
-
+    </div>
     <img class="banner-object" th:src="noveleaf-banner-object.png" alt="banner">
 
 </header>
