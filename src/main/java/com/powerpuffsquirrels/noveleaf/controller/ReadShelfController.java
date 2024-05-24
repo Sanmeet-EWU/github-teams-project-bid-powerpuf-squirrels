@@ -55,9 +55,7 @@ public class ReadShelfController {
     public String loadBooks(ReadShelfRepository readShelfRepository, AuthorRepository AuthorRepo, BookRepository BookRepo, BookAuthorRepository BookAuthRepo, Model model, HttpSession session) {
         UserDto user = (UserDto) session.getAttribute("user");
         model.addAttribute("userAccount", (UserDto) session.getAttribute("user"));
-        if (user == null) {
-            return "login";
-        }
+
 
         //Too lazy to change constructor object for readshelf :)
         this.userAccount = new UserAccount();

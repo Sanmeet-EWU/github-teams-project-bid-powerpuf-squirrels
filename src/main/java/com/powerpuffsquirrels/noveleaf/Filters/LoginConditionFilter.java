@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LoginConditionFilter implements Filter {
 
-    private final List<String> whitelist = Arrays.asList("/login","/logout","/create-account");
+    private final List<String> whitelist = Arrays.asList("/login","/logout","/create-account","/readshelf","/error");
     private final List<String> statics = Arrays.asList(".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".woff", ".ttf");
     //private final List<String> statics = Arrays.asList("/css/","/image/","/js/"); //doesn't work :|
 
@@ -24,8 +24,10 @@ public class LoginConditionFilter implements Filter {
         boolean isStatic = statics.stream().anyMatch(requestURI::endsWith);
         //boolean isStatic = statics.stream().anyMatch(requestURI::contains);
 
-        if(isWhitelisted || isStatic)  filterChain.doFilter(request, response);
-
+        if(isWhitelisted || isStatic) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         if(request.getSession().getAttribute("user") == null){
 
             if(requestURI.equals("/")) response.sendRedirect(request.getContextPath()+"/login");
@@ -35,6 +37,5 @@ public class LoginConditionFilter implements Filter {
 
 
         filterChain.doFilter(request, response);
-
     }
 }
