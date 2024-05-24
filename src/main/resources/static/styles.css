@@ -10,7 +10,7 @@ body {
 }
 
 header {
-    background-color: #004b2f;
+    /*background-color: #004b2f;*/
     color: white;
     padding: 10px 0;
     text-align: left;
@@ -18,10 +18,20 @@ header {
     margin-top: 0;
 }
 
+header table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .container {
+    flex: 1;
     width: 80%;
     margin-top: 10px;
     padding: 20px;
+    /* center the container */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
 }
 
 label, input {
@@ -49,7 +59,7 @@ footer {
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
+    /*position: fixed;*/
     bottom: 0;
     width: 100%;
 }
@@ -79,10 +89,6 @@ footer {
     text-align: center;
 }
 
-.book-item img {
-    margin-bottom: 10px;
-}
-
 .book-item span {
     margin-top: 10px;
 }
@@ -92,4 +98,26 @@ footer {
     height: 213px;
     object-fit: cover; /* This will ensure the image is resized and cropped to fit the dimensions */
     margin-bottom: 10px;
+    box-shadow: -1px 1px 13px -3px rgba(0,0,0,0.59);
 }
+
+.book-item dont-flex-down {
+    flex: 0 0 auto;
+    margin-top: 10px;
+}
+
+.banner-object {
+    /*height: 306px;*/
+    height: 200px;
+    width: 98%;
+    object-fit: cover;
+    border-radius: 14px;
+    /*center the image*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*drop shadow. Nice shadow value generator: https://www.cssmatic.com/box-shadow*/
+    box-shadow: -7px 11px 40px -3px rgba(0,0,0,0.50);
+}
+
+

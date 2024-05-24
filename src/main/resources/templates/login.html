@@ -9,6 +9,7 @@
 </head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
+<div class="container">
 
 <p th:if="${error}" th:text="${error}" style="color: red;"></p>
 <div th:if="${param.error}">
@@ -26,6 +27,7 @@
     <br><br>
     Don't have an account? <a href="/create-account" class="button">Register</a>
 </form>
+</div>
 <th:block th:insert="~{footer :: footer}"></th:block>
 </body>
 </html>
