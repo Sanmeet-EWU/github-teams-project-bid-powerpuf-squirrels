@@ -81,18 +81,21 @@ public class ReadShelfController {
     }
 
     //This shit is currently not working
-//    @PostMapping("/readshelf")
-//    public String rateBook(@RequestParam("isbn") String isbn, @RequestParam("rating") int rating, HttpSession session) {
-//        // Logic to handle the rating, e.g., save the rating to the database
-//        UserDto user = (UserDto) session.getAttribute("user");
-//
-//        // Call your service to handle the rating logic
-//        //readShelfService.rateBook(isbn, rating, user);
-//
-//        System.out.println("Rating book with ISBN: " + isbn + " with rating: " + rating);
-//
-//        // Redirect to the readshelf page or any other page
-//        return "redirect:/readshelf";
-//    }
+    @PostMapping("/readshelf")
+    public String rateBook(@RequestParam("isbn") String isbn, @RequestParam("rating") int rating, HttpSession session) {
+        // Logic to handle the rating, e.g., save the rating to the database
+        UserDto user = (UserDto) session.getAttribute("user");
+
+        // Call your service to handle the rating logic
+        //readShelfService.rateBook(isbn, rating, user);
+
+        System.out.println("Rating book with ISBN: " + isbn + " with rating: " + rating);
+
+        //update read_shelf
+        readShelfService.updateReadShelfItem(isbn, rating, user.getUserID());
+
+        // Redirect to the readshelf page or any other page
+        return "redirect:/readshelf";
+    }
 
 }

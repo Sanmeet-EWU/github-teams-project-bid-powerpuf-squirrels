@@ -28,4 +28,12 @@ public class ReadShelfService {
         readShelfEntity.setDateAdded(new java.sql.Date(System.currentTimeMillis()));
         readShelfRepository.save(readShelfEntity);
     }
+
+    public void updateReadShelfItem(String isbn, int rating, int userId) {
+        ReadShelfEntity readShelfEntity = readShelfRepository.findByUserIdAndIsbn(userId, isbn);
+        readShelfEntity.setIsbn(isbn);
+        readShelfEntity.setUserId(userId);
+        readShelfEntity.setRating(rating);
+        readShelfRepository.save(readShelfEntity);
+    }
 }

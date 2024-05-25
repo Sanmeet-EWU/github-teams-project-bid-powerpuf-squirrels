@@ -34,7 +34,7 @@
                     <input type="hidden" name="index" th:value="${iter.index}" />
                     <button type="submit">Read</button>
                 </form>
-                <span class="title" th:text="${book.title}"></span>
+                <span class="title" th:text="${book.title}" th:title="${book.title}"></span>
                 <span class="authors" th:text="${book.getAuthorNames()}"></span>
             </div>
         </li>

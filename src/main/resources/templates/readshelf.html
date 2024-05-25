@@ -6,7 +6,7 @@
     <title>Library Home Page</title>
     <link rel="stylesheet" th:href="@{styles.css}">
     <link rel="stylesheet" th:href="@{rating.css}">
-    <script type="text/javascript" th:src="@{sendrating.js}"></script>
+
     <script type="text/javascript">
         function handleImageLoad(image) {
             if (image.naturalWidth === 1 && image.naturalHeight === 1) {
@@ -20,28 +20,6 @@
 <div class="container">
 
     <h1>My Read Books</h1>
-
-    <!--  Old code. Not sure if I might need anything from here, so leaving it for now-->
-    <!--<div th:if="${readShelfItems != null}">-->
-    <!--  <table width="80%" th:each="entity : ${readShelfItems}">-->
-    <!--    <tr>-->
-    <!--      <td width="100px"><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${entity.isbn} + '-M.jpg'"-->
-    <!--                             alt="cover"-->
-    <!--                             width="100px"-->
-    <!--                             onload="handleImageLoad(this)"-->
-    <!--                             onerror="this.src='noveleafnobook.png'"/></td>-->
-    <!--      <td valign="top" align="left">-->
-    <!--        Title: <span th:text="${entity.title}"></span><br>-->
-    <!--        Author: <span th:text="${entity.authors}"></span><br>-->
-    <!--        ISBN: <span th:text="${entity.isbn}"></span><br>-->
-    <!--        Rating: <span th:text="${entity.rating}"></span>/5-->
-    <!--      </td>-->
-    <!--      <td width="100px">-->
-    <!--      </td>-->
-    <!--    </tr>-->
-    <!--  </table>-->
-    <!--</div>-->
-
 
     <div th:if="${readShelfItems != null}">
         <ul class="display-books">
@@ -71,15 +49,26 @@
                               th:each="i : ${#numbers.sequence(1, 0 + entity.rating)}"><img class="star-rating"
                                                                                             th:src="leaf-star.png"
                                                                                             alt="star"
-                                                                                            width="15px"/></span><span
+                                                                                            width="15px"/></span><span th:if="${entity.rating != 5}"
                             th:each="i : ${#numbers.sequence(1, 5 - entity.rating)}"><img class="grayscale"
                                                                                           th:src="leaf-star.png"
                                                                                           alt="star"
                                                                                           width="15px"/></span>
                     </div>
-                    <div id="rating_bar">
-                        <span id="rate_1"></span><span id="rate_2"></span><span id="rate_3"></span><span id="rate_4"></span><span id="rate_5"></span>
-                    </div>
+                        <div class="rating_bar" th:id="'rating_bar_' + ${iter.index}">
+                            <span class="rate" th:id="'rate_1_' + ${iter.index}"></span>
+                            <span class="rate" th:id="'rate_2_' + ${iter.index}"></span>
+                            <span class="rate" th:id="'rate_3_' + ${iter.index}"></span>
+                            <span class="rate" th:id="'rate_4_' + ${iter.index}"></span>
+                            <span class="rate" th:id="'rate_5_' + ${iter.index}"></span>
+                        </div>
+
+
+                        <form th:id="'star-rating-' + ${iter.index}" th:action="@{/readshelf}" method="post">
+                            <input type="hidden" name="isbn" th:value="${entity.isbn}" />
+                            <input type="hidden" name="rating" th:value="1" />
+                        </form>
+
                 </div>
 
 
@@ -87,12 +76,14 @@
 
 
 
-                    <span class="title" th:text="${entity.title}"></span>
+                    <span class="title" th:text="${entity.title}" th:title="${entity.title}"></span>
                     <span class="authors" th:text="${entity.authors}"></span>
                     <!--          <span th:text="${entity.isbn}"></span>-->
-
-
                 </div>
+                    <script th:if="${iter.index} == ${#lists.size(readShelfItems) - 1}" type="text/javascript" th:src="@{rating.js}"></script>
+
+
+
             </li>
         </ul>
     </div>

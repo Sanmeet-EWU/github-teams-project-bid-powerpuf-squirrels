@@ -1,4 +1,4 @@
-#rating_bar {
+.rating_bar {
     /*this block is some crap*/
     /*!*width:100px;*!*/
     /*!*height:100px;*!*/
@@ -19,28 +19,62 @@
     justify-content: center;
     align-items: center;
 }
-#rating_bar > span:before {
+.rating_bar > span:before {
     content: url(leaf-star-small.png);
-    /*filter: grayscale(100%);*/
-    /*width: 15px;*/
     opacity: 0.0;
     color: #c7c5c5;
-    cursor:pointer;
-    font-size:3em;
+    cursor: pointer;
+    font-size: 3em;
 }
-#rating_bar:hover > span:before {
+
+.rating_bar:hover > span:before {
     color: #4bce32;
     content: url(leaf-star-small.png);
-    /*filter: grayscale(0%) saturate(200%);*/
     opacity: 1;
-    /*width: 15px;*/
-
 }
 
-#rating_bar > span:hover ~ span:before {
+.rating_bar > span:hover ~ span:before {
     color: #c7c5c5;
     content: url(leaf-star-small-gry.png);
     filter: grayscale(100%);
     opacity: 1;
-    /*width: 15px;*/
 }
+
+/*.button {*/
+/*    background-color: transparent;*/
+/*}*/
+
+/*.button:hover {*/
+/*    background-image: url("leaf-star-small.png");*/
+/*}*/
+
+/*#rating_bar > button {*/
+/*    background: none;*/
+/*    border: none;*/
+/*}*/
+
+/*#rating_bar > button:before {*/
+/*    content: url(leaf-star-small.png);*/
+/*    !*filter: grayscale(100%);*!*/
+/*    !*width: 15px;*!*/
+/*    opacity: 0.0;*/
+/*    color: #c7c5c5;*/
+/*    cursor:pointer;*/
+/*    font-size:3em;*/
+/*}*/
+/*#rating_bar:hover > button:before {*/
+/*    color: #4bce32;*/
+/*    content: url(leaf-star-small.png);*/
+/*    !*filter: grayscale(0%) saturate(200%);*!*/
+/*    opacity: 1;*/
+/*    !*width: 15px;*!*/
+
+/*}*/
+
+/*#rating_bar > button:hover ~ button:before {*/
+/*    color: #c7c5c5;*/
+/*    content: url(leaf-star-small-gry.png);*/
+/*    filter: grayscale(100%);*/
+/*    opacity: 1;*/
+/*    !*width: 15px;*!*/
+/*}*/
