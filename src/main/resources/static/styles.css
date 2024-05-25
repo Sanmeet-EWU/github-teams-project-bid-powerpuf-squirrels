@@ -118,6 +118,12 @@ footer {
     /*font-size: 1.2em;*/
     margin-top: 5px;
     font-weight: 700;
+    /*Trying to get the title to only wrap twice*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .book-item .authors {
@@ -125,6 +131,7 @@ footer {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 158px;
 }
 
 .book-item img {
@@ -144,6 +151,11 @@ footer {
     object-fit: cover; /* This will ensure the image is resized and cropped to fit the dimensions */
     margin-bottom: 5px; /* changing from 10px */
     box-shadow: -1px 1px 13px -3px rgba(0,0,0,0.59);
+}
+
+.book-item .book-cover:hover {
+    cursor: pointer;
+    transform: perspective(200px) rotate3D(0, 1, 0, 10deg);
 }
 
 .book-item .dont-flex-down {

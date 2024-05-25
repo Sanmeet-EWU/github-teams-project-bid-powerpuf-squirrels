@@ -11,7 +11,7 @@
     <script type="text/javascript">
         function handleImageLoad(image) {
             if (image.naturalWidth === 1 && image.naturalHeight === 1) {
-                image.src = 'noveleafnobook.png'; //fall back image
+                image.src = 'noveleafnobook-low-vibrance.png'; //fall back image
             }
         }
     </script>
@@ -34,8 +34,8 @@
                     <input type="hidden" name="index" th:value="${iter.index}" />
                     <button type="submit">Read</button>
                 </form>
-                <span th:text="${book.title}"></span>
-                <span th:text="${book.getAuthorNames()}"></span>
+                <span class="title" th:text="${book.title}"></span>
+                <span class="authors" th:text="${book.getAuthorNames()}"></span>
             </div>
         </li>
     </ul>
