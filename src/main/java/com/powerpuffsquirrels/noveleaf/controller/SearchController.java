@@ -98,7 +98,7 @@ public class SearchController {
         readShelfService.addReadShelfItem(this.books.get(index).getIsbn(), user.getUserID());
 
         //yes, this will always return ok. Can mess with it more later
-        return ResponseEntity.ok("Book search submitted successfully");
+        return ResponseEntity.ok(this.books.get(index).getTitle() + " has been added to your read shelf!");
 
         //need to look more into return "redirect:/readshelf"; as a possible alternative
 

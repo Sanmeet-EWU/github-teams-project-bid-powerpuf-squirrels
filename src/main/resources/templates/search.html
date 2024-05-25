@@ -30,7 +30,7 @@
                      width="160px"
                      onload="handleImageLoad(this)"
                      onerror="this.src='noveleafnobook.png'"/>
-                <form th:if="${userAccount != null}" id="searchForm" th:action="@{/search}" method="post">
+                <form th:if="${userAccount != null}" id="addBookForm" th:action="@{/search}" method="post">
                     <input type="hidden" name="index" th:value="${iter.index}" />
                     <button type="submit">Read</button>
                 </form>

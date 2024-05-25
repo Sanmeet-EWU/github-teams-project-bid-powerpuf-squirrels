@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("form").on("submit", function(event) {
+    $("#addBookForm").on("submit", function(event) {
         event.preventDefault();
         var form = $(this);
         var index = form.find("input[name='index']").val();
