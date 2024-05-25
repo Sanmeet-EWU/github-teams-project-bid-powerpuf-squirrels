@@ -5,6 +5,6 @@ import com.powerpuffsquirrels.noveleaf.model.Preference;
 
 import java.util.List;
 
-public interface PreferencesRepository extends JpaRepository<Preference, Integer>{
+public interface PreferencesRepository extends JpaRepository<Preference, Integer> {
     List<Preference> findByUser_UserID(Integer userID);
 }

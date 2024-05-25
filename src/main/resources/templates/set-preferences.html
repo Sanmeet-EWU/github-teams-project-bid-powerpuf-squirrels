@@ -3,24 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account</title>
+    <title>User Preferences</title>
     <link rel="stylesheet" th:href="@{styles.css}">
-    <link rel="stylesheet" th:href="@{login.css}">
 </head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
 
-<p th:if="${error}" th:text="${error}" style="color: red;"></p>
-<form class="login-form" action="#" th:action="@{/create-account/preferences}" method="post">
-    <h2>Create Account</h2>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required placeholder="Username"><br><br>
+<h2>User Preferences</h2>
+<form action="#" th:action="@{/api/preferences/{user_id}(user_id=${userId})}" method="post">
+    <label for="genres">Preferred Genres:</label><br>
+    <select id="genres" name="genres" multiple>
+        <option value="romance">Romance</option>
+        <option value="fantasy">Fantasy</option>
+        <option value="science fiction">Science Fiction</option>
+        <option value="mystery">Mystery</option>
+        <option value="thriller">Thriller</option>
+        <option value="nonfiction">Non-fiction</option>
+    </select><br><br>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required placeholder="Password"><br><br>
+    <label for="bookTypes">Preferred Book Types:</label><br>
+    <select id="bookTypes" name="bookTypes" multiple>
+        <option value="fiction">Fiction</option>
+        <option value="nonfiction">Non-fiction</option>
+    </select><br><br>
 
-    <input type="submit" value="Create Account">
+    <label for="value">Additional Information:</label><br>
+    <input type="text" id="value" name="value" placeholder="Any additional preferences"><br><br>
+
+    <input type="submit" value="Save Preferences">
 </form>
+
 <th:block th:insert="~{footer :: footer}"></th:block>
 </body>
 </html>
+

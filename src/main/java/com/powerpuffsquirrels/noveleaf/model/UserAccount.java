@@ -3,6 +3,8 @@ package com.powerpuffsquirrels.noveleaf.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -25,4 +27,7 @@ public class UserAccount {
     @Column(nullable = false)
     private String hash;
 
+    @OneToMany(mappedBy =  "user", cascade
+    = CascadeType.ALL, fetch = FetchType.LAZY)
+        private Set<Preference> preferences;
 }
