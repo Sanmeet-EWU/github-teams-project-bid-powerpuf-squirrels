@@ -100,5 +100,7 @@ public class SearchController {
         //yes, this will always return ok. Can mess with it more later
         return ResponseEntity.ok("Book search submitted successfully");
 
+        //need to look more into return "redirect:/readshelf"; as a possible alternative
+
     }
 }

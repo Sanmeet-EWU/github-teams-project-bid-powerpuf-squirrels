@@ -14,10 +14,15 @@ import com.powerpuffsquirrels.noveleaf.service.imp.BookAuthorService;
 import com.powerpuffsquirrels.noveleaf.service.imp.BookService;
 import com.powerpuffsquirrels.noveleaf.service.imp.ReadShelfService;
 import jakarta.servlet.http.HttpSession;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
@@ -72,19 +77,22 @@ public class ReadShelfController {
         model.addAttribute("readShelfItems", readShelfItems);
 
 
-
-
         return "readshelf";
     }
 
-    //Maybe I'll do this later
-//    @GetMapping("/readshelf")
-//    public String searchBooks(Model model) {
-//        System.out.println("test");
-//        List<ReadShelfEntity> readBooks = readShelfRepository.findByUserID(userAccount.getUserID());
-//        model.addAttribute("readBooks", readBooks);
+    //This shit is currently not working
+//    @PostMapping("/readshelf")
+//    public String rateBook(@RequestParam("isbn") String isbn, @RequestParam("rating") int rating, HttpSession session) {
+//        // Logic to handle the rating, e.g., save the rating to the database
+//        UserDto user = (UserDto) session.getAttribute("user");
 //
-//        return "readshelf";
+//        // Call your service to handle the rating logic
+//        //readShelfService.rateBook(isbn, rating, user);
+//
+//        System.out.println("Rating book with ISBN: " + isbn + " with rating: " + rating);
+//
+//        // Redirect to the readshelf page or any other page
+//        return "redirect:/readshelf";
 //    }
 
 }

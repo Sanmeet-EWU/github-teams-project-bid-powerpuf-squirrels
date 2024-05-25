@@ -1,69 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library Home Page</title>
-  <link rel="stylesheet" th:href="@{styles.css}">
-  <script type="text/javascript">
-    function handleImageLoad(image) {
-      if (image.naturalWidth === 1 && image.naturalHeight === 1) {
-        image.src = 'noveleafnobook.png'; // Path to your fallback image
-      }
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Home Page</title>
+    <link rel="stylesheet" th:href="@{styles.css}">
+    <link rel="stylesheet" th:href="@{rating.css}">
+    <script type="text/javascript" th:src="@{sendrating.js}"></script>
+    <script type="text/javascript">
+        function handleImageLoad(image) {
+            if (image.naturalWidth === 1 && image.naturalHeight === 1) {
+                image.src = 'noveleafnobook.png'; // Path to your fallback image
+            }
+        }
+    </script>
 </head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
 <div class="container">
 
-<h1>My Read Books</h1>
+    <h1>My Read Books</h1>
 
-<!--  Old code. Not sure if I might need anything from here, so leaving it for now-->
-<!--<div th:if="${readShelfItems != null}">-->
-<!--  <table width="80%" th:each="entity : ${readShelfItems}">-->
-<!--    <tr>-->
-<!--      <td width="100px"><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${entity.isbn} + '-M.jpg'"-->
-<!--                             alt="cover"-->
-<!--                             width="100px"-->
-<!--                             onload="handleImageLoad(this)"-->
-<!--                             onerror="this.src='noveleafnobook.png'"/></td>-->
-<!--      <td valign="top" align="left">-->
-<!--        Title: <span th:text="${entity.title}"></span><br>-->
-<!--        Author: <span th:text="${entity.authors}"></span><br>-->
-<!--        ISBN: <span th:text="${entity.isbn}"></span><br>-->
-<!--        Rating: <span th:text="${entity.rating}"></span>/5-->
-<!--      </td>-->
-<!--      <td width="100px">-->
-<!--      </td>-->
-<!--    </tr>-->
-<!--  </table>-->
-<!--</div>-->
+    <!--  Old code. Not sure if I might need anything from here, so leaving it for now-->
+    <!--<div th:if="${readShelfItems != null}">-->
+    <!--  <table width="80%" th:each="entity : ${readShelfItems}">-->
+    <!--    <tr>-->
+    <!--      <td width="100px"><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${entity.isbn} + '-M.jpg'"-->
+    <!--                             alt="cover"-->
+    <!--                             width="100px"-->
+    <!--                             onload="handleImageLoad(this)"-->
+    <!--                             onerror="this.src='noveleafnobook.png'"/></td>-->
+    <!--      <td valign="top" align="left">-->
+    <!--        Title: <span th:text="${entity.title}"></span><br>-->
+    <!--        Author: <span th:text="${entity.authors}"></span><br>-->
+    <!--        ISBN: <span th:text="${entity.isbn}"></span><br>-->
+    <!--        Rating: <span th:text="${entity.rating}"></span>/5-->
+    <!--      </td>-->
+    <!--      <td width="100px">-->
+    <!--      </td>-->
+    <!--    </tr>-->
+    <!--  </table>-->
+    <!--</div>-->
 
 
-
-  <div th:if="${readShelfItems != null}">
-    <ul class="display-books">
-      <li th:each="entity, iter : ${readShelfItems}">
-        <div class="book-item">
-          <img class="book-cover" th:src="'https://covers.openlibrary.org/b/isbn/' + ${entity.isbn} + '-M.jpg'"
-               alt="cover"
-               width="160px"
-               onload="handleImageLoad(this)"
-               onerror="this.src='noveleafnobook.png'"/>
-<!--          <form th:if="${userAccount != null}" id="searchForm" th:action="@{/search}" method="post">-->
-<!--            <input type="hidden" name="index" th:value="${iter.index}" />-->
-<!--            <button type="submit">Read</button>-->
-<!--          </form>-->
-          <span th:text="${entity.title}"></span>
-          <span th:text="${entity.authors}"></span>
-<!--          <span th:text="${entity.isbn}"></span>-->
-      <div class="dont-flex-down">
-          <span th:text="${entity.rating}"></span>/5</div>
-        </div>
-      </li>
-    </ul>
-  </div>
+    <div th:if="${readShelfItems != null}">
+        <ul class="display-books">
+            <li th:each="entity, iter : ${readShelfItems}">
+                <div class="book-item">
+                    <img class="book-cover"
+                         th:src="'https://covers.openlibrary.org/b/isbn/' + ${entity.isbn} + '-M.jpg'"
+                         alt="cover"
+                         width="160px" `
+                         onload="handleImageLoad(this)"
+                         onerror="this.src='noveleafnobook.png'"/>
+                    <!--          <form th:if="${userAccount != null}" id="searchForm" th:action="@{/search}" method="post">-->
+                    <!--            <input type="hidden" name="index" th:value="${iter.index}" />-->
+                    <!--            <button type="submit">Read</button>-->
+                    <!--          </form>-->
 
 
 
@@ -71,9 +64,64 @@
 
 
 
+<!--                    https://jsfiddle.net/mr_alien/zLrd0p5s/-->
+                    <div class="absolute-outer">
+                    <div class="dont-flex-down">
+                        <span th:if="${entity.rating != 0}"
+                              th:each="i : ${#numbers.sequence(1, 0 + entity.rating)}"><img class="star-rating"
+                                                                                            th:src="leaf-star.png"
+                                                                                            alt="star"
+                                                                                            width="15px"/></span><span
+                            th:each="i : ${#numbers.sequence(1, 5 - entity.rating)}"><img class="grayscale"
+                                                                                          th:src="leaf-star.png"
+                                                                                          alt="star"
+                                                                                          width="15px"/></span>
+                    </div>
+                    <div id="rating_bar">
+                        <span id="rate_1"></span><span id="rate_2"></span><span id="rate_3"></span><span id="rate_4"></span><span id="rate_5"></span>
+                    </div>
+                </div>
 
+
+
+
+
+
+                    <span class="title" th:text="${entity.title}"></span>
+                    <span class="authors" th:text="${entity.authors}"></span>
+                    <!--          <span th:text="${entity.isbn}"></span>-->
+
+
+                </div>
+            </li>
+        </ul>
+    </div>
 
 </div>
 <th:block th:insert="~{footer :: footer}"></th:block>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<form id="1-star-rating" th:action="@{/readshelf}" method="post">-->
+<!--    <input type="hidden" name="isbn" th:value="${entity.isbn}" />-->
+<!--    <input type="hidden" name="rating" th:value="1" />-->
+<!--    <button type="submit" id="rate_1"></button>-->
+<!--</form>-->
+

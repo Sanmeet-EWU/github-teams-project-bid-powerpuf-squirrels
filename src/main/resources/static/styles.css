@@ -94,7 +94,7 @@ footer {
 }
 
 .display-books li {
-    padding: 10px;
+    padding: 0px;
     box-sizing: border-box;
     height: 320px; /* 233px will be for the picture */
     width: 160px;
@@ -105,23 +105,65 @@ footer {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .book-item span {
-    margin-top: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.book-item .title {
+    /*font-size: 1.2em;*/
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+.book-item .authors {
+    font-size: 0.7em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .book-item img {
+    /*width: 158px;*/
+    /*height: 213px;*/
+    /*object-fit: cover; !* This will ensure the image is resized and cropped to fit the dimensions *!*/
+    /*margin-bottom: 0px; !* changing from 10px *!*/
+    /*box-shadow: -1px 1px 13px -3px rgba(0,0,0,0.59);*/
+/*    0p margins*/
+    margin: 0;
+    padding: 0;
+}
+
+.book-item .book-cover {
     width: 158px;
     height: 213px;
     object-fit: cover; /* This will ensure the image is resized and cropped to fit the dimensions */
-    margin-bottom: 10px;
+    margin-bottom: 5px; /* changing from 10px */
     box-shadow: -1px 1px 13px -3px rgba(0,0,0,0.59);
 }
 
-.book-item dont-flex-down {
+.book-item .dont-flex-down {
     flex: 0 0 auto;
+    margin-top: 5px;
+    /*position: absolute;*/
+    transform: translate(0px, -50%)
+}
+
+.book-item .dont-flex-down:hover {
+    opacity: 0.0;
+}
+
+.absolute-outer {
+    height: 18px;
     margin-top: 10px;
+    position: relative; /* Establish a containing block for absolute positioning */
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }
 
 .banner-image {
@@ -157,10 +199,34 @@ footer {
 /*css for the search bar*/
 .search-bar {
     justify-content: center;
-    /* width of 100px*/
     width: 200px;
-    /*center vertically*/
     margin-top: auto;
     margin-bottom: auto;
 
+}
+
+.star-rating {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*margin-top: 5px;*/
+    padding: 0;
+    margin: 0;
+}
+.star-rating:hover {
+    cursor: pointer;
+    filter: saturate(200%);
+}
+
+.grayscale {
+    filter: grayscale(100%);
+    opacity: 0.5;
+    padding: 0;
+    margin: 0;
+}
+
+.grayscale:hover {
+    filter: grayscale(0%) saturate(200%);
+    cursor: pointer;
+    opacity: 1;
 }
