@@ -17,26 +17,18 @@ public class UserPreferencesController {
     private UserPreferenceService userPreferenceService;
 
     @PostMapping("/{user_id}")
-    public Preference saveUserPreferences(@PathVariable Integer user_id, @RequestBody UserPreferencesDTO preferencesDTO) {
-        return userPreferenceService.saveUserPreferences(user_id, preferencesDTO.getGenres(), preferencesDTO.getBookTypes(), preferencesDTO.getValue());
-    }
-
-    @GetMapping("/{userId}")
-    public List<Preference> getUserPreferences(@PathVariable Integer userId) {
-        return userPreferenceService.getUserPreferences(userId);
-    }
-
-    @PostMapping("/{user_id}")
-    public ResponseEntity<Preference> saveUserPreferences(@PathVariable Integer user_id, @RequestParam List<String> genres, @RequestParam List<String> bookTypes, @RequestParam String value) {
-        UserPreferencesDTO preferencesDTO = new UserPreferencesDTO();
-        preferencesDTO.setGenres(genres);
-        preferencesDTO.setBookTypes(bookTypes);
-        preferencesDTO.setValue(value);
-
-        Preference savedPreference = userPreferenceService.saveUserPreferences(user_id, preferencesDTO.getGenres(), preferencesDTO.getBookTypes(), preferencesDTO.getValue());
+    public ResponseEntity<Preference> saveUserPreferences(@PathVariable("user_id") Integer userId, @RequestBody UserPreferencesDTO preferencesDTO) {
+        Preference savedPreference = userPreferenceService.saveUserPreferences(userId, preferencesDTO.getGenres(), preferencesDTO.getBookTypes(), preferencesDTO.getValue());
         return new ResponseEntity<>(savedPreference, HttpStatus.CREATED);
     }
 
+    @GetMapping("/{user_id}")
+    public ResponseEntity<List<Preference>> getUserPreferences(@PathVariable("user_id") Integer userId) {
+        List<Preference> preferences = userPreferenceService.getUserPreferences(userId);
+        return new ResponseEntity<>(preferences, HttpStatus.OK);
+    }
+
 }
+
 
 
