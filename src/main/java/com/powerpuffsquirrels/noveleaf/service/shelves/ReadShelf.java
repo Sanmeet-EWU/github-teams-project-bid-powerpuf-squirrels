@@ -15,6 +15,7 @@ import org.springframework.data.jpa.repository.Query;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ReadShelf implements Bookshelf {
@@ -63,6 +64,11 @@ public class ReadShelf implements Bookshelf {
         return readShelfItems;
     }
 
+    //nothing calling this yet, but should work
+//    public List<ReadShelfItem> sortByRating() {
+//        readShelfItems.sort(Comparator.comparing(ReadShelfItem::getRating).reversed());
+//        return readShelfItems;
+//    }
 
 
 }

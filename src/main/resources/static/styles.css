@@ -242,3 +242,25 @@ footer {
     cursor: pointer;
     opacity: 1;
 }
+
+
+.add-buttons {
+    font-size:11px;
+    font-family:Arial;
+    height:18px;
+    border-width:1px;
+    color:#fff;
+    border-color:#3b6e22;
+    font-weight:bold;
+    border-top-left-radius:0px;
+    border-top-right-radius:0px;
+    border-bottom-left-radius:0px;
+    border-bottom-right-radius:0px;
+    box-shadow:inset 0px 1px 0px 0px #9acc85;
+    background:linear-gradient(rgba(0, 187, 116, 1), rgba(1, 80, 51, 1));
+}
+
+.add-buttons:hover {
+    background: linear-gradient(rgba(1, 80, 51, 1), rgba(0, 187, 116, 1));
+}
+

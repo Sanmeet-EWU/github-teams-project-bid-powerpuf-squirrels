@@ -30,9 +30,13 @@
                      width="160px"
                      onload="handleImageLoad(this)"
                      onerror="this.src='noveleafnobook.png'"/>
-                <form th:if="${userAccount != null}" id="addBookForm" th:action="@{/search}" method="post">
+                <form th:if="${userAccount != null}" id="addBookForm" th:action="@{/readbook}" method="post">
                     <input type="hidden" name="index" th:value="${iter.index}" />
-                    <button type="submit">Read</button>
+                    <button type="submit" class="add-buttons">Read</button>
+                </form>
+                <form th:if="${userAccount != null}" id="wantToReadBookForm" th:action="@{/wantbook}" method="post">
+                    <input type="hidden" name="index" th:value="${iter.index}" />
+                    <button type="submit" class="add-buttons">Want To Read</button>
                 </form>
                 <span class="title" th:text="${book.title}" th:title="${book.title}"></span>
                 <span class="authors" th:text="${book.getAuthorNames()}"></span>

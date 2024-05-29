@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LoginConditionFilter implements Filter {
 
-    private final List<String> whitelist = Arrays.asList("/login","/logout","/create-account","/readshelf","/error");
+    private final List<String> whitelist = Arrays.asList("/login","/logout","/create-account","/readshelf","/error", "/", "/search");
     private final List<String> statics = Arrays.asList(".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".woff", ".ttf");
     //private final List<String> statics = Arrays.asList("/css/","/image/","/js/"); //doesn't work :|
 

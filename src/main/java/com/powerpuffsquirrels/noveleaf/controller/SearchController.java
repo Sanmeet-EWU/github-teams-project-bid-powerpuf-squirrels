@@ -6,10 +6,7 @@ import com.powerpuffsquirrels.noveleaf.model.Book;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.powerpuffsquirrels.noveleaf.model.BookAuthor;
-import com.powerpuffsquirrels.noveleaf.service.imp.AuthorService;
-import com.powerpuffsquirrels.noveleaf.service.imp.BookAuthorService;
-import com.powerpuffsquirrels.noveleaf.service.imp.BookService;
-import com.powerpuffsquirrels.noveleaf.service.imp.ReadShelfService;
+import com.powerpuffsquirrels.noveleaf.service.imp.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +39,8 @@ public class SearchController {
     BookAuthorService bookAuthorService;
     @Autowired
     private AuthorService authorService;
+    @Autowired
+    WantToReadService wantToReadService;
 
     @GetMapping("/search")
     public String searchBooks(@RequestParam(name = "q", required = false) String query, Model model, HttpSession session) {
@@ -82,7 +81,7 @@ public class SearchController {
         return "search";
     }
 
-    @PostMapping("/search")
+    @PostMapping("/readbook")
     public ResponseEntity<String> submitBook(int index, Model model) {
         //I think you need to add them in the order of Aythor, BookAuthor, Book
 
@@ -103,4 +102,26 @@ public class SearchController {
         //need to look more into return "redirect:/readshelf"; as a possible alternative
 
     }
+    @PostMapping("/wantbook")
+    public ResponseEntity<String> submitWantBook(int index, Model model) {
+        //I think you need to add them in the order of Aythor, BookAuthor, Book
+
+        //add author to author table
+        Author author = this.books.get(index).getAuthors().get(0);
+        authorService.addAuthor(author);
+
+        //add book to book table along with book_author
+        //Genre is still a WIP since the API gives some jank results
+        bookService.addBookWithAuthor(this.books.get(index).getIsbn(), this.books.get(index).getTitle(), "WIP", author.getFirstName(), author.getLastName());
+
+        //add book to want to read shelf
+        wantToReadService.addWantToReadItem(this.books.get(index).getIsbn(), user.getUserID());
+
+        //yes, this will always return ok. Can mess with it more later
+        return ResponseEntity.ok(this.books.get(index).getTitle() + " has been added to your want to read shelf!");
+
+        //need to look more into return "redirect:/readshelf"; as a possible alternative
+
+    }
+
 }
