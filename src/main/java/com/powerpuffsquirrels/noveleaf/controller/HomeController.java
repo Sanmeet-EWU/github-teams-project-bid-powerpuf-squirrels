@@ -1,14 +1,24 @@
 package com.powerpuffsquirrels.noveleaf.controller;
 
 import com.powerpuffsquirrels.noveleaf.DataTransferObj.UserDto;
+import com.powerpuffsquirrels.noveleaf.service.MostRead;
+import com.powerpuffsquirrels.noveleaf.service.imp.BookService;
+import com.powerpuffsquirrels.noveleaf.service.imp.ReadShelfService;
 import jakarta.servlet.http.HttpSession;
 import org.apache.tomcat.util.modeler.BaseAttributeFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    private ReadShelfService readShelfService;
+
+    @Autowired
+    private BookService bookService;
 
     @GetMapping("/") // you want to simply bind this to the root. This is equivalent to http://localhost:10480/
     public String home(Model model, HttpSession session)
@@ -17,6 +27,9 @@ public class HomeController {
         //This should be added to every controller!
         //Must ensure (Model model, HttpSession session) are passed in as parameters!!
         model.addAttribute("userAccount", (UserDto) session.getAttribute("user"));
+
+        MostRead mostRead = new MostRead(this.readShelfService, this.bookService);
+        model.addAttribute("mostReadBooks", mostRead.getMostReadBooks());
 
         /*
         If there are any pages that should only be displayed if the User is logged in, a simple check can be implemented:

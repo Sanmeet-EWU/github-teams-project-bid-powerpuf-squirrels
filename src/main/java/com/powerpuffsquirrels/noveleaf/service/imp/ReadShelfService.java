@@ -45,4 +45,15 @@ public class ReadShelfService {
         readShelfEntity.setRating(rating);
         readShelfRepository.save(readShelfEntity);
     }
+
+    public List<String> mostAdded7Days() {
+        List<String> topReadShelves = readShelfRepository.mostAdded7Days();
+//        List<String> topisbns = topReadShelves.stream().map(ReadShelfEntity::getIsbn).toList();
+
+
+
+
+
+        return topReadShelves;
+    }
 }
