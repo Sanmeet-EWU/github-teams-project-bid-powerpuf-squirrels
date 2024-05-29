@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PreferencesRepository extends JpaRepository<Preference, Integer> {
     List<Preference> findByUser_UserID(Integer userID);
+
+    List<Preference> findByUser_UserIDAndPrefType(Integer userID, String prefType);
 }

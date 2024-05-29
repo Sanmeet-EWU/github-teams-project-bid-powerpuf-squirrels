@@ -12,13 +12,16 @@
 <div th:if="${recommendations.isEmpty()}">
     <p>No recommendations available at the moment.</p>
 </div>
-<div th:each="book : ${recommendations}">
-    <div>
-        <img th:src="${book.coverImage}" alt="Book Cover" style="width:100px;height:150px;">
-        <h3 th:text="${book.title}">Book Title</h3>
-        <p th:text="${book.author}">Author Name</p>
-        <p th:text="${book.description}">Book description goes here...</p>
-    </div>
+<div th:each="genreRec : ${recommendations}">
+    <h3 th:text="${genreRec.genre}">Genre</h3>
+    <ul>
+        <li th:each="book : ${genreRec.recommendations}">
+            <img th:src="${book.volumeInfo.imageLinks.getThumbnail()}" alt="Book Cover" style="width:100px;height:150px;">
+            <p th:text="${book.getId()}">Book Title</p>
+            <p th:text="${book.volumeInfo.getAuthors()}">Author Name</p>
+            <p th:text="${book.volumeInfo.getDescription()}">Book description...</p>
+        </li>
+    </ul>
 </div>
 <th:block th:insert="~{footer :: footer}"></th:block>
 </body>

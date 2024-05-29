@@ -21,7 +21,7 @@ public class UserPreferenceService {
         Preference preference = Preference.builder()
                 .user(userAccount)
                 .preferredGenres(genres)
-                .pref_type(String.join(", ", bookTypes)) // Assuming a single string combining book types
+                .prefType(String.join(", ", bookTypes)) // Assuming a single string combining book types
                 .value(value)
                 .build();
 

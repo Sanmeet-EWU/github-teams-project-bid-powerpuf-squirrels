@@ -30,7 +30,7 @@ public class Preference {
 
     @Setter
     @Column(nullable = false, name = "pref_type")
-    private String pref_type;
+    private String prefType;
 
     @Setter
     @Column(nullable = false)
