@@ -1,10 +1,6 @@
 package com.powerpuffsquirrels.noveleaf.controller;
 
 import com.powerpuffsquirrels.noveleaf.DataTransferObj.UserDto;
-import com.powerpuffsquirrels.noveleaf.model.Book;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.powerpuffsquirrels.noveleaf.model.ReadShelfEntity;
 import com.powerpuffsquirrels.noveleaf.repository.AuthorRepository;
 import com.powerpuffsquirrels.noveleaf.repository.BookAuthorRepository;
 import com.powerpuffsquirrels.noveleaf.repository.BookRepository;
@@ -14,21 +10,14 @@ import com.powerpuffsquirrels.noveleaf.service.imp.BookAuthorService;
 import com.powerpuffsquirrels.noveleaf.service.imp.BookService;
 import com.powerpuffsquirrels.noveleaf.service.imp.ReadShelfService;
 import jakarta.servlet.http.HttpSession;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 
 //import HttpSession
-
-
 import com.powerpuffsquirrels.noveleaf.service.shelves.*;
 
 import java.util.ArrayList;
