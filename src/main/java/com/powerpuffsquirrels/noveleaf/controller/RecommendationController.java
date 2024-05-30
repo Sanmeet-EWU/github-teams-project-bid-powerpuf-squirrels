@@ -28,6 +28,7 @@ public class RecommendationController {
         List<RecommendationService.GenreRecommendations> recommendations = recommendationService.getRecsByGenre(userId);
         model.addAttribute("userID", userId);
         model.addAttribute("recommendations", recommendations);
+
         return "recommendations";
     }
 }

@@ -1,7 +1,15 @@
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Goal Fragment</title>
+</head>
+<body>
+<div th:fragment="goalDisplay">
 <div id="display-container">
-    <div th:each="readinggoal : ${readgoallist}" class="container">
-        <div th:text= "'Read '+${readinggoal.target}+'Books by '+${readinggoal.endDate}"></div>
-        <div th:text= "${readinggoal.booksRead}+ ' books read, '+ ${readinggoal.getTimeLeft()}"></div>
-    </div>
+    <div th:text= "'Read '+${readinggoal.getTarget()}+' books by: '+${readinggoal.getEndDate()}"></div>
+    <div th:text= "${readinggoal.getBooksRead}+ ' books read, '+ ${readinggoal.getTimeLeft()}+' days left'"></div>
 </div>
+</div>
+</body>
+</html>

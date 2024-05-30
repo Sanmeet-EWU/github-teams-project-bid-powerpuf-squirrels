@@ -46,9 +46,13 @@ public class ReadingGoal {
     @Setter
     private String status;
 
+
+
+
+
     public long getTimeLeft(){
-         LocalDate timeLimit = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-         LocalDate current = Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+         LocalDate timeLimit = endDate.toLocalDate();
+         LocalDate current = new java.util.Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
          return ChronoUnit.DAYS.between(current, timeLimit);
 

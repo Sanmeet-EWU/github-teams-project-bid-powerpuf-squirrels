@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Home Page</title>
+    <title>Goal List</title>
     <link rel="stylesheet" th:href="@{styles.css}">
-</head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
 <div class="container">
-
+    <div th:each="readinggoal : ${goalList}">
+        <div th:insert="reading-goal :: goalDisplay"></div>
+    </div>
 </div>
 <th:block th:insert="~{footer :: footer}"></th:block>
 </body>
