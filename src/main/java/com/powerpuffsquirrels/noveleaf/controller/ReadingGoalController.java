@@ -24,7 +24,7 @@ public class ReadingGoalController {
     @GetMapping("/ReadingGoals")
     public String DisplayReadingGoals(HttpSession session, Model model){
         UserDto user = (UserDto) session.getAttribute("user");
-        model.addAttribute("user");
+        model.addAttribute("userAccount", user);
 
         List<ReadingGoal> goalList = goalService.GetGoalsByUserID(user.getUserID());
         model.addAttribute("goalList", goalList);

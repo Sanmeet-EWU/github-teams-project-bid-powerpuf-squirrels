@@ -9,6 +9,24 @@ body {
     flex-direction: column;
 }
 
+#scroll-box {
+    width: 70%;
+    height: 60%;
+    border: 1px solid #ccc;
+    overflow-y: scroll;
+    padding: 10px;
+}
+.item {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+}
+
+.scroll-box{
+    display: grid;
+    place-items: center;
+}
+
 header {
     /*background-color: #004b2f;*/
     color: white;

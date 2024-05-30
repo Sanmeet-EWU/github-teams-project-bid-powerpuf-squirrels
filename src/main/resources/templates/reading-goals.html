@@ -7,10 +7,14 @@
     <link rel="stylesheet" th:href="@{styles.css}">
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
-<div class="container">
-    <div th:each="readinggoal : ${goalList}">
-        <div th:insert="reading-goal :: goalDisplay"></div>
+
+<div class="scroll-box">
+<div id="scroll-box">
+    <div th:each="readinggoal : ${goalList}" >
+        <div th:text= "'Read '+${readinggoal.getTarget()}+' books by: '+${readinggoal.getEndDate()}"></div>
+        <div th:text= "${readinggoal.getBooksRead}+ ' books read, '+ ${readinggoal.getTimeLeft()}+' days left'"></div>
     </div>
+</div>
 </div>
 <th:block th:insert="~{footer :: footer}"></th:block>
 </body>
