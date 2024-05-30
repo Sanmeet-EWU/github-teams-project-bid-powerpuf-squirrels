@@ -13,12 +13,18 @@
     <p>No recommendations available at the moment.</p>
 </div>
 <div th:each="genreRec : ${recommendations}">
-    <h3 th:text="${genreRec.genre}">Genre</h3>
+    <h3 th:text="${#strings.capitalize(genreRec.genre)}">Genre</h3>
     <ul>
         <li th:each="book : ${genreRec.recommendations}">
-            <img th:src="${book.volumeInfo.imageLinks.getThumbnail()}" alt="Book Cover" style="width:100px;height:150px;">
-            <p th:text="${book.getId()}">Book Title</p>
-            <p th:text="${book.volumeInfo.getAuthors()}">Author Name</p>
+            <img th:src="${book.volumeInfo != null &&
+                         book.volumeInfo.getImageLinks() != null &&
+                         book.volumeInfo.getImageLinks().getThumbnail() != null ?
+                         book.volumeInfo.getImageLinks().getThumbnail() :
+                         'noveleafnobook-low-vibrance.png'}"
+                 alt="Book Cover"
+                 style="width:100px;height:150px;">
+            <p th:text="${book.volumeInfo.getTitle()}">Book Title</p>
+            <p th:text="${#strings.arrayJoin(book.volumeInfo.getAuthors().toArray(), ', ')}">Author Name</p>
             <p th:text="${book.volumeInfo.getDescription()}">Book description...</p>
         </li>
     </ul>

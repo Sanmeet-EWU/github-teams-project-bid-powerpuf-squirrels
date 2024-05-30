@@ -15,6 +15,7 @@ public class VolumeInfo {
     private Double averageRating;
     private Integer ratingsCount;
     private ImageLinks imageLinks;
+    private List<IndustryIdentifier> industryIdentifiers;
 
     // Getters and setters
     public String getTitle() {
@@ -87,6 +88,12 @@ public class VolumeInfo {
 
     public void setImageLinks(ImageLinks imageLinks) {
         this.imageLinks = imageLinks;
+    }
+    public List<IndustryIdentifier> getIndustryIdentifiers() {
+        return industryIdentifiers;
+    }
+    public void setIndustryIdentifiers(List<IndustryIdentifier> industryIdentifiers) {
+        this.industryIdentifiers = industryIdentifiers;
     }
 }
 
