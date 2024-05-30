@@ -3,6 +3,7 @@ package com.powerpuffsquirrels.noveleaf.service.imp;
 import com.powerpuffsquirrels.noveleaf.model.Preference;
 import com.powerpuffsquirrels.noveleaf.model.UserAccount;
 import com.powerpuffsquirrels.noveleaf.repository.PreferencesRepository;
+import com.powerpuffsquirrels.noveleaf.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +11,16 @@ import java.util.List;
 
 @Service
 public class UserPreferenceService {
+
     @Autowired
     private PreferencesRepository preferencesRepository;
 
     @Autowired
-    private PreferencesRepository userAccountRepository;
+    private UserAccountRepository userAccountRepository;
+
     public Preference saveUserPreferences(int userID, List<String> genres, List<String> bookTypes, String value) {
-        UserAccount userAccount = userAccountRepository.findById(userID).orElseThrow(() -> new RuntimeException("User not found")).getUser();
+        UserAccount userAccount = userAccountRepository.findById(userID)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         Preference preference = Preference.builder()
                 .user(userAccount)
@@ -32,4 +36,3 @@ public class UserPreferenceService {
         return preferencesRepository.findByUser_UserID(userID);
     }
 }
-
