@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <link rel="stylesheet" th:href="@{/login.css}">
 </head>
 <body>
-<h2>Login</h2>
+<th:block th:insert="~{header :: header}"></th:block>
+<div class="container">
+
 <p th:if="${error}" th:text="${error}" style="color: red;"></p>
-<form action="#" th:action="@{/login}" method="post">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required placeholder="username">
-        <br><br>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required placeholder="password">
-        <br><br>
-    </div>
-    <button type="submit" value="Login">Login</button>
+<div  th:if="${param.error}">
+    <p style="color: darkorange;">Please log in!</p>
+</div>
+<form class="login-form" action="#" th:action="@{/login}" method="post">
+    <h2>Login</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required placeholder="Username"><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required placeholder="Password"><br><br>
+
+    <input type="submit" value="Login">
+    <br><br>
+    Don't have an account? <a href="/create-account" class="button">Register</a>
 </form>
+</div>
+<th:block th:insert="~{footer :: footer}"></th:block>
 </body>
 </html>

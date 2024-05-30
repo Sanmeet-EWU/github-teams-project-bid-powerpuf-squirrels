@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Home Page</title>
+    <link rel="stylesheet" th:href="@{styles.css}">
+</head>
+<body>
+<th:block th:insert="~{header :: header}"></th:block>
+<h2>Recommended Books for You</h2>
+<div th:if="${recommendations.isEmpty()}">
+    <p>No recommendations available at the moment.</p>
+</div>
+<div th:each="genreRec : ${recommendations}">
+    <h3 th:text="${genreRec.genre}">Genre</h3>
+    <ul>
+        <li th:each="book : ${genreRec.recommendations}">
+            <img th:src="${book.volumeInfo.imageLinks.getThumbnail()}" alt="Book Cover" style="width:100px;height:150px;">
+            <p th:text="${book.getId()}">Book Title</p>
+            <p th:text="${book.volumeInfo.getAuthors()}">Author Name</p>
+            <p th:text="${book.volumeInfo.getDescription()}">Book description...</p>
+        </li>
+    </ul>
+</div>
+<th:block th:insert="~{footer :: footer}"></th:block>
+</body>
+</html>

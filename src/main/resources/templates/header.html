@@ -1,0 +1,57 @@
+<header>
+    <div class="banner">
+    <table th:if="${userAccount == null}" border="0px" cellpadding="0" width="100%">
+        <tr>
+            <td width="101"><img th:src="noveleaf-text.png" alt="Noveleaf" style="width: 100px; display: inline-block; margin-left: 10px;"></td>
+            <td>
+                <a href="/" class="button">Home</a>
+                <a href="/search" class="button">Search</a>
+                <a href="/readshelf" class="button">Read Shelf</a>
+            </td>
+            <td align="right">
+                <a href="/create-account" class="button">Register</a>
+                <a href="/login" class="button">Login</a>
+            </td>
+            <td align="right" width="320px">
+                <form action="#" th:action="@{/search}" method="get" style="margin-left: 10px">
+                    <input class="search-bar" type="text" name="q" placeholder="Search" style="padding: 10px;"/>
+                    <button type="submit" style="padding: 10px;">Search</button>
+                </form>
+
+            </td>
+        </tr>
+    </table>
+
+
+        <table th:if="${userAccount != null}" border="0px" cellpadding="0" width="100%">
+            <tr>
+                <td><img th:src="noveleaf-text.png" alt="Noveleaf" style="width: 100px; display: inline-block; margin-left: 10px;"></td>
+                <td>
+                    <a href="/" class="button">Home</a>
+                    <a href="/search" class="button">Search</a>
+                    <a href="/readshelf" class="button">Read Shelf</a>
+                    <a href="/wanttoreadshelf" class="button">Want To Read</a>
+                </td>
+                <td align="right">
+                    <font color="black">
+                    Hello, <b><span th:text="${userAccount.username}">!</span></b></font>
+                    <a href="/logout" class="button">Logout</a>
+                </td>
+                <td align="right" width="410px">
+                    <form action="#" th:action="@{/search}" method="get" style="margin-left: 10px">
+                        <input class="search-bar" type="text" name="q" placeholder="Search" style="padding: 10px;"/>
+                        <button type="submit" style="padding: 10px;">Search</button>
+                    </form>
+
+
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="banner-image">
+    <img class="banner-object" th:src="noveleaf-banner-object-low-vibrance.png" alt="banner">
+    <img class="banner-logo" th:src="logo-low-vibrance.png" alt="logo">
+    </div>
+</header>
+

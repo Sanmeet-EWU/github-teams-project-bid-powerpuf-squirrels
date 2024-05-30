@@ -2,9 +2,14 @@ package com.powerpuffsquirrels.noveleaf.repository;
 
 import com.powerpuffsquirrels.noveleaf.model.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+@Repository
+public interface UserAccountRepository extends JpaRepository<UserAccount, Integer>{
 
-public interface UserRepository extends JpaRepository<UserAccount, Integer>{
-    Optional<UserAccount> FindUser(String username, String password);
+    @Query("SELECT user FROM UserAccount user WHERE user.username = :username AND user.hash = :hash")
+    UserAccount findAccount(String username, String hash);
+    UserAccount findByUsername(String username);
+
 }

@@ -4,6 +4,12 @@ import jakarta.persistence.*;
 
 import lombok.*;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -21,7 +27,7 @@ public class ReadingGoal {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private UserAccount user;
 
-    @Setter
+    @Setter //actual goal
     @Column(nullable = false)
     private Integer target;
 
@@ -39,5 +45,13 @@ public class ReadingGoal {
 
     @Setter
     private String status;
+
+    public long getTimeLeft(){
+         LocalDate timeLimit = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+         LocalDate current = Calendar.getInstance().getTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+         return ChronoUnit.DAYS.between(current, timeLimit);
+
+    }
 
 }

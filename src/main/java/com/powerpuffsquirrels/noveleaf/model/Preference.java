@@ -3,13 +3,15 @@ package com.powerpuffsquirrels.noveleaf.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Table(name = "preference")
-public class Preferences {
+public class Preference {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,12 +19,18 @@ public class Preferences {
     private Integer prefID; // Primary key
 
     @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "user_id", nullable = false)
+    @JoinColumn(name = "user_id",referencedColumnName = "user_id")
     private UserAccount user;
+
+    @ElementCollection
+    @CollectionTable(name = "preferred_genres", joinColumns = @JoinColumn(name = "pref_id"))
+    @Column(name = "genre")
+    private List<String> preferredGenres;
+
 
     @Setter
     @Column(nullable = false, name = "pref_type")
-    private String pref_type;
+    private String prefType;
 
     @Setter
     @Column(nullable = false)

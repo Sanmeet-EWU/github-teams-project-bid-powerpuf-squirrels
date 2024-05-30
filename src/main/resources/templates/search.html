@@ -1,47 +1,53 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Search Books</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Home Page</title>
+    <link rel="stylesheet" th:href="@{styles.css}">
+    <link rel="stylesheet" th:href="@{popup.css}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" th:src="@{popup.js}"></script>
     <script type="text/javascript">
         function handleImageLoad(image) {
             if (image.naturalWidth === 1 && image.naturalHeight === 1) {
-                image.src = 'https://i.imgur.com/zRda5uX.png'; // Path to your fallback image
+                image.src = 'noveleafnobook-low-vibrance.png'; //fall back image
             }
         }
     </script>
 </head>
 <body>
+<th:block th:insert="~{header :: header}"></th:block>
+<div class="container">
 <h1>Search Books</h1>
-<form action="#" th:action="@{/search}" method="get">
-    <input type="text" name="q" placeholder="Search"/>
-    <button type="submit">Search</button>
-</form>
 
 <div th:if="${books != null}">
-    <table width="80%" th:each="book : ${books}">
-        <tr>
-            <td width="100px"><img th:src="'https://covers.openlibrary.org/b/isbn/' + ${book.isbn} + '-M.jpg'"
-                                   alt="cover"
-                                   width="100px"
-                                   onload="handleImageLoad(this)"/></td>
-            <td valign="top" align="left">
-
-                Title: <span th:text="${book.title}"></span><br>
-                Author: <span th:text="${book.getAuthorNames()}"></span><br>
-                ISBN: <span th:text="${book.isbn}"></span>
-
-            </td>
-
-            <td width="100px">
-                Read<br>
-                Want to Read
-
-            </td>
-
-        </tr>
-    </table>
-
-
+    <ul class="display-books">
+        <li th:each="book, iter : ${books}">
+            <div class="book-item">
+                <img class="book-cover" th:src="'https://covers.openlibrary.org/b/isbn/' + ${book.isbn} + '-M.jpg'"
+                     alt="cover"
+                     width="160px"
+                     onload="handleImageLoad(this)"
+                     onerror="this.src='noveleafnobook.png'"/>
+                <form th:if="${userAccount != null}" id="addBookForm" th:action="@{/readbook}" method="post">
+                    <input type="hidden" name="index" th:value="${iter.index}" />
+                    <button type="submit" class="add-buttons">Read</button>
+                </form>
+                <form th:if="${userAccount != null}" id="wantToReadBookForm" th:action="@{/wantbook}" method="post">
+                    <input type="hidden" name="index" th:value="${iter.index}" />
+                    <button type="submit" class="add-buttons">Want To Read</button>
+                </form>
+                <span class="title" th:text="${book.title}" th:title="${book.title}"></span>
+                <span class="authors" th:text="${book.getAuthorNames()}"></span>
+            </div>
+        </li>
+    </ul>
 </div>
+</div>
+
+
+
+<th:block th:insert="~{footer :: footer}"></th:block>
 </body>
 </html>

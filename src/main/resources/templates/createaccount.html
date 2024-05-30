@@ -2,16 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
+    <link rel="stylesheet" th:href="@{styles.css}">
+    <link rel="stylesheet" th:href="@{login.css}">
 </head>
 <body>
-<h2>Create Account</h2>
-<form action="/create account" method="post">
-  <label>Create Account:</label>
-  <input type="text" id="createaccount" name="createaccount" required><br><br>
+<th:block th:insert="~{header :: header}"></th:block>
+<div class="container">
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+<form class="login-form" action="#" th:action="@{/create-account}" method="post">
+    <h2>Create Account</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required placeholder="Username"><br><br>
 
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required placeholder="Password"><br><br>
 
-  <input type="submit" value="Create Account">
-</form>
+    <input type="submit" value="Create Account">
+</form></div>
+<th:block th:insert="~{footer :: footer}"></th:block>
 </body>
 </html>

@@ -9,21 +9,25 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @Builder
-@IdClass(BookAuthor.BookAuthorID.class )
+@IdClass(BookAuthor.BookAuthorID.class)
 @Table(name = "book_author")
 public class BookAuthor {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "isbn", referencedColumnName ="isbn", nullable = false)
+    @JoinColumn(name = "isbn", referencedColumnName = "isbn", nullable = false)
     private Book book;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "author_id", referencedColumnName = "author_id", nullable = false)
     private Author author;
+
+    public int getAuthorId() {
+        return author.getAuthorID();
+    }
 
     @Getter
     @EqualsAndHashCode
@@ -34,4 +38,7 @@ public class BookAuthor {
         private Integer author;
     }
 
+    public String getIsbn() {
+        return book.getIsbn();
+    }
 }
