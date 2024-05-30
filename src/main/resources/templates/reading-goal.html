@@ -1,0 +1,7 @@
+
+<div id="display-container">
+    <div th:each="readinggoal : ${readgoallist}" class="container">
+        <div th:text= "'Read '+${readinggoal.target}+'Books by '+${readinggoal.endDate}"></div>
+        <div th:text= "${readinggoal.booksRead}+ ' books read, '+ ${readinggoal.getTimeLeft()}"></div>
+    </div>
+</div>

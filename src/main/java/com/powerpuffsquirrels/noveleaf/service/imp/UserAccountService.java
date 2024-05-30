@@ -44,8 +44,6 @@ public class UserAccountService implements IUserAccountService, IHash {
     }
 
 
-    //this feels like a clumsy implementation to me, I certainly don't want every controller to have to call instantiate this class
-    //so this method will have to find a new home later, or a new implementation
     public boolean LoggedIn(HttpSession Session){
         if(Session.getAttribute("user") == null) return false;
         return true;
