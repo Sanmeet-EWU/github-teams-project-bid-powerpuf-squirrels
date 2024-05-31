@@ -1,6 +1,7 @@
 package com.powerpuffsquirrels.noveleaf.controller;
 
 import com.powerpuffsquirrels.noveleaf.DataTransferObj.BookItem;
+import com.powerpuffsquirrels.noveleaf.DataTransferObj.UserDto;
 import com.powerpuffsquirrels.noveleaf.service.imp.RecommendationService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class RecommendationController {
     @GetMapping("/recommendations")
     public String getRecommendations(Model model, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userID");
+        model.addAttribute("userAccount", (UserDto) session.getAttribute("user"));
 
         List<RecommendationService.GenreRecommendations> recommendations = recommendationService.getRecsByGenre(userId);
         model.addAttribute("userID", userId);
