@@ -36,7 +36,7 @@ public class ReadingGoalController {
         model.addAttribute("goalList", goalList);
         return ("reading-goals");
     }
-
+    //
     @PostMapping("/ReadingGoals-delete")
     public String DeleteGoal(@RequestParam int goalId){
         goalService.DeleteGoal(goalId);
