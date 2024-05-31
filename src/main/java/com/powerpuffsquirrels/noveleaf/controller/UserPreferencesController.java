@@ -25,11 +25,11 @@ public class UserPreferencesController {
         return "preferences"; // This is the name of the Thymeleaf template (preferences.html)
     }
 
-    @PostMapping("/{user_id}")
+    @PostMapping("/preferences")
     public String saveUserPreferences(@PathVariable("user_id") Integer userId,
                                       @ModelAttribute UserPreferencesDTO preferencesDTO, Model model) {
         userPreferenceService.saveUserPreferences(userId, preferencesDTO.getGenres(), preferencesDTO.getBookTypes(), preferencesDTO.getValue());
-        return "redirect:/preferences/" + userId; // Redirect to the user's preferences page
+        return "/index"; // Redirect to the user's preferences page
     }
 
 }
