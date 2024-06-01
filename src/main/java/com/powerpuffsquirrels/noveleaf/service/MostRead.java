@@ -18,6 +18,7 @@ public class MostRead {
 
 
     //constuctor
+    @Autowired
     public MostRead(ReadShelfService readShelfService, BookService bookService) {
         mostReadBooks = new ArrayList<>();
 

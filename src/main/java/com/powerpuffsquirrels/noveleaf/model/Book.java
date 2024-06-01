@@ -1,9 +1,7 @@
 package com.powerpuffsquirrels.noveleaf.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +18,10 @@ public class Book {
     private String title;
     private String genre;
 
+    @Transient
+    private String coverImageUrl;
     @OneToMany(mappedBy = "book")
+    @JsonManagedReference
     private List<BookAuthor> bookAuthors = new ArrayList<>();
 
 //    public List<BookAuthor> getBookAuthorList() {
@@ -68,4 +69,14 @@ public class Book {
         bookAuthors.add(bookAuthor);
 
     }
+
+    public String getCoverImageUrl() {
+        return coverImageUrl;
+    }
+
+    public void setCoverImageUrl(String coverImageUrl) {
+        this.coverImageUrl = coverImageUrl;
+    }
+
+
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New York Times Best Selling Books</title>
+  <style>
+    .share-button {
+      background-color: #007bff;
+      color: white;
+      padding: 5px 10px;
+      text-decoration: none;
+      border-radius: 3px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+    .book-cover {
+      width: 150px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+<h1>New York Times Best Selling Books</h1>
+<ul>
+  <li th:each="book : ${books}">
+    <img th:src="${book.coverImageUrl}" alt="Cover Image" class="book-cover"/>
+    <h2 th:text="${book.title}">Book Title</h2>
+    <p th:text="${book.authorNames}">Author</p>
+    <p th:text="${book.genre}">Genre</p>
+  </li>
+</ul>
+</body>
+</html>

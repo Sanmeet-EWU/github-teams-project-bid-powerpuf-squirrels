@@ -1,5 +1,6 @@
 package com.powerpuffsquirrels.noveleaf.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,8 @@ public class BookAuthor {
 
     @Id
     @ManyToOne
+    @JsonBackReference
+
     @JoinColumn(name = "isbn", referencedColumnName = "isbn", nullable = false)
     private Book book;
 
