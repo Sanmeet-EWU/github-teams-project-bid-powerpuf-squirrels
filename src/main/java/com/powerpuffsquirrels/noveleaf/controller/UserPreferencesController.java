@@ -45,7 +45,7 @@ public class UserPreferencesController {
         return "set-preferences";
     }
 
-    @PostMapping("/preferences/")
+    @PostMapping("/preferences")
     public String savePreferences(@PathVariable("user_id") int userId,
                                   @RequestParam("genres") String genres,
                                   Model model) {
@@ -54,6 +54,6 @@ public class UserPreferencesController {
         userPreferenceService.clearPreferences(userId, "genre");
         genreList.forEach(genre -> userPreferenceService.addPreference(userId, "genre", genre.trim()));
 
-        return "redirect:/";
+        return "redirect:/index";
     }
 }
