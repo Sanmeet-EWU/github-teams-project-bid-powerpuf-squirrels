@@ -1,5 +1,6 @@
 package com.powerpuffsquirrels.noveleaf.model;
 
+import com.powerpuffsquirrels.noveleaf.service.imp.UserPreferenceService;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,3 +38,6 @@ public class Preference {
     private String value;
 
 }
+/*
+create preference object in controller
+ */

@@ -18,21 +18,23 @@ public class UserPreferenceService {
     @Autowired
     private UserAccountRepository userAccountRepository;
 
-    public Preference saveUserPreferences(int userID, List<String> genres, List<String> bookTypes, String value) {
-        UserAccount userAccount = userAccountRepository.findById(userID)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        Preference preference = Preference.builder()
-                .user(userAccount)
-                .preferredGenres(genres)
-                .prefType(String.join(", ", bookTypes)) // Assuming a single string combining book types
-                .value(value)
-                .build();
-
-        return preferencesRepository.save(preference);
+    public List<Preference> getPreferencesByUserId(int userId) {
+        return preferencesRepository.findByUser_UserID(userId);
     }
 
-    public List<Preference> getUserPreferences(int userID) {
-        return preferencesRepository.findByUser_UserID(userID);
+    public void addPreference(int userId, String prefType, String value) {
+        UserAccount userAccount = userAccountRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        Preference preference = Preference.builder()
+                .user(userAccount)
+                .prefType(prefType)
+                .value(value)
+                .build();
+        preferencesRepository.save(preference);
+    }
+
+    public void clearPreferences(int userId, String prefType) {
+        List<Preference> preferences = preferencesRepository.findByUser_UserIDAndPrefType(userId, prefType);
+        preferencesRepository.deleteAll(preferences);
     }
 }

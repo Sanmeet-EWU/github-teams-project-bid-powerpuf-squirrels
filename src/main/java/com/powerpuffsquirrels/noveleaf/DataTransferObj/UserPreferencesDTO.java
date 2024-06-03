@@ -1,4 +1,4 @@
-package com.powerpuffsquirrels.noveleaf.DataTransferObj;
+/*package com.powerpuffsquirrels.noveleaf.DataTransferObj;
 
 import java.util.List;
 
@@ -28,3 +28,7 @@ public class UserPreferencesDTO {
         this.value = value;
     }
 }
+
+ */
+
+
