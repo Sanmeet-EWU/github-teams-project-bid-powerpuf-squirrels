@@ -42,6 +42,9 @@ public class SearchController {
     @Autowired
     WantToReadService wantToReadService;
 
+    @Autowired
+    ReadingGoalService goalService;
+
     @GetMapping("/search")
     public String searchBooks(@RequestParam(name = "q", required = false) String query, Model model, HttpSession session) {
 
@@ -95,6 +98,9 @@ public class SearchController {
 
         //add book to read shelf
         readShelfService.addReadShelfItem(this.books.get(index).getIsbn(), user.getUserID());
+
+        //JARED: updates goals when new book is added
+        goalService.updateGoals(user.getUserID(), 1);
 
         //yes, this will always return ok. Can mess with it more later
         return ResponseEntity.ok(this.books.get(index).getTitle() + " has been added to your read shelf!");

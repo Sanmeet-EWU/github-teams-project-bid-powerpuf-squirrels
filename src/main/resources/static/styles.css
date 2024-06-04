@@ -18,6 +18,59 @@ header {
     margin-top: 0;
 }
 
+
+
+#scroll-box {
+    width: 800px;
+    height: 600px;
+    border: 1px solid #ccc;
+    overflow-y: scroll;
+    padding: 10px;
+}
+.goal-item {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+
+}
+.goal-form {
+    width: 50%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+
+}
+.scroll-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.delete{
+    color: black;
+    background: #d10008;
+    width: 100px;
+}
+
+.error{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+}
+
+
 .banner {
     /*background-color: #004b2f;*/
     background-color: #f2e7e6;

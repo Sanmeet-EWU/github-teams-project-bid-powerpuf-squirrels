@@ -11,11 +11,14 @@
 <th:block th:insert="~{header :: header}"></th:block>
 <div class="container">
 
+<div class="error">
 <p th:if="${error}" th:text="${error}" style="color: red;"></p>
 <div  th:if="${param.error}">
     <p style="color: darkorange;">Please log in!</p>
 </div>
-<form class="login-form" action="#" th:action="@{/login}" method="post">
+</div>
+
+    <form class="login-form" action="#" th:action="@{/login}" method="post">
     <h2>Login</h2>
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required placeholder="Username"><br><br>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal List</title>
+    <link rel="stylesheet" th:href="@{styles.css}">
+<body>
+<th:block th:insert="~{header :: header}"></th:block>
+<div class="scroll-box">
+<div id="scroll-box">
+    <div th:each="readinggoal: ${goalList}" class="goal-item" >
+        <p th:text= "'Read '+${readinggoal.getTarget()}+' books by: '+${readinggoal.getEndDate()}"></p>
+
+
+
+        <div th:if="${readinggoal.getStatus() == 'Ongoing'}">
+        <p th:text= "${readinggoal.getBooksRead}+'/'+ ${readinggoal.getTarget()} + ' books read, '+ ${readinggoal.getTimeLeft()}+' days left'">
+        </div>
+
+        <div th:if="${readinggoal.getStatus() == 'Completed'}">
+            <p th:text= "'Goal completed!'">
+        </div>
+
+        <div th:if="${readinggoal.getStatus() == 'Failed'}">
+            <p th:text= "'Goal Expired'">
+        </div>
+
+        <form th:action="@{/ReadingGoals-delete}" method="post" style="display: inline">
+                <input type="hidden" id="goalId" name="goalId" th:value="${readinggoal.getGoalID()}"/>
+                <input class="delete" type="submit" value="Delete?"/>
+            </form>
+        </p>
+    </div>
+</div>
+</div>
+<form class="goal-form" th:action="@{/ReadingGoals}" method="post">
+    <h2>Add a new Goal?</h2>
+    <p>
+    <label for="readingGoal">Goal:</label>
+    <input type="number" id="readingGoal" name = "readingGoal" required pattern="\d+" placeholder="books">
+    </p>
+    <p>
+    <label for="readingGoal">Deadline:</label>
+    <input type="date" id="deadline" name="deadline" required/>
+    </p>
+    <input type="submit" value="Create Goal"/>
+</form>
+<th:block th:insert="~{footer :: footer}"></th:block>
+</body>
+</html>

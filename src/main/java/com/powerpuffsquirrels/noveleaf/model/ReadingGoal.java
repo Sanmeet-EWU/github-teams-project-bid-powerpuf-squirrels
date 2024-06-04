@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -39,5 +43,15 @@ public class ReadingGoal {
 
     @Setter
     private String status;
+
+
+    public long getTimeLeft(){
+        LocalDate timeLimit = endDate.toLocalDate();
+        LocalDate current = new java.util.Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        return ChronoUnit.DAYS.between(current, timeLimit);
+    }
+
+
 
 }
