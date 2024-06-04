@@ -17,13 +17,16 @@ import java.util.List;
 @Controller
 public class UserPreferencesController {
 
+    UserDto user;
+
     @Autowired
     private UserPreferenceService userPreferenceService;
 
     @GetMapping("/preferences")
     public String getPreferences(Model model, HttpSession session) {
-        UserDto user = (UserDto) session.getAttribute("user");
-        if (user == null) {
+        this.user = (UserDto) session.getAttribute("user");
+
+        if (this.user == null) {
             return "redirect:/login";
         }
 
@@ -43,12 +46,10 @@ public class UserPreferencesController {
         return "view-preferences";
     }
 
-    @PostMapping("/update-preferences")
-    public String updatePreferences(@RequestParam("genres") String genres,
-                                    HttpSession session,
-                                    Model model) {
-        UserDto user = (UserDto) session.getAttribute("user");
-        int userId = user.getUserID();
+    @PostMapping("/preferences")
+    public String updatePreferences(@RequestParam("genres") String genres) {
+//        UserDto user = (UserDto) session.getAttribute("user");
+        int userId = this.user.getUserID();
 
         List<String> genreList = Arrays.asList(genres.split(","));
         userPreferenceService.clearPreferences(userId, "genre");

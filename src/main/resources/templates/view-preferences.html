@@ -11,10 +11,10 @@
 <div class="container">
   <h1>View and Update Preferences</h1>
 
-  <form th:action="@{/update-preferences}" method="post">
+  <form th:action="@{/preferences}" method="post">
     <div class="form-group">
       <label for="genres">Genres</label>
-      <input type="text" id="genres" name="genres" class="form-control" placeholder="Enter genres separated by commas" th:value="${genres}">
+      <input type="text" id="genres" name="genres" class="form-control" placeholder="Enter genres separated by commas">
     </div>
     <br>
     <button type="submit" class="btn btn-primary">Update Preferences</button>
