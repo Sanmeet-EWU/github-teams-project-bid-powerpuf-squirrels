@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Home Page</title>
     <link rel="stylesheet" th:href="@{styles.css}">
+    <script type="text/javascript">
+        function handleImageLoad(image) {
+            if (image.naturalWidth === 1 && image.naturalHeight === 1) {
+                image.src = 'noveleafnobook-low-vibrance.png'; //fall back image
+            }
+        }
+    </script>
 </head>
 <body>
 <th:block th:insert="~{header :: header}"></th:block>
@@ -14,6 +21,7 @@
     password: bananas<br><br>
 
     In general, use ctrl+shift+r to refresh the page and see style changes.<br><br><br><br>
+
 
 <!--Most read books in the last 7 days-->
     <h1>Most read books in the last 7 days</h1>
