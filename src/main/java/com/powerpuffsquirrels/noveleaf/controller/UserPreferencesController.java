@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,7 +24,7 @@ public class UserPreferencesController {
     public String getPreferences(Model model, HttpSession session) {
         UserDto user = (UserDto) session.getAttribute("user");
         if (user == null) {
-            return "redirect:/login"; // Redirect to login if user is not found in session
+            return "redirect:/login";
         }
 
         model.addAttribute("userAccount", user);
@@ -34,7 +33,6 @@ public class UserPreferencesController {
         model.addAttribute("userId", user.getUserID());
         model.addAttribute("userPreferences", userPreferences);
 
-        // Extract genres from the preferences to display them in the input field
         String genres = userPreferences.stream()
                 .filter(pref -> "genre".equals(pref.getPrefType()))
                 .map(Preference::getValue)
@@ -42,18 +40,20 @@ public class UserPreferencesController {
                 .orElse("");
         model.addAttribute("genres", genres);
 
-        return "set-preferences";
+        return "view-preferences";
     }
 
-    @PostMapping("/preferences")
-    public String savePreferences(@PathVariable("user_id") int userId,
-                                  @RequestParam("genres") String genres,
-                                  Model model) {
+    @PostMapping("/update-preferences")
+    public String updatePreferences(@RequestParam("genres") String genres,
+                                    HttpSession session,
+                                    Model model) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        int userId = user.getUserID();
 
         List<String> genreList = Arrays.asList(genres.split(","));
         userPreferenceService.clearPreferences(userId, "genre");
         genreList.forEach(genre -> userPreferenceService.addPreference(userId, "genre", genre.trim()));
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 }
