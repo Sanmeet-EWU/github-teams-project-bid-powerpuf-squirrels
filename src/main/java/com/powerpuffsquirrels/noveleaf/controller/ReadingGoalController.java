@@ -16,6 +16,7 @@ import java.util.List;
 
 @Controller
 public class ReadingGoalController {
+    private UserDto user;
     private ReadingGoalService goalService;
 
     @Autowired
@@ -25,8 +26,8 @@ public class ReadingGoalController {
 
     @GetMapping("/ReadingGoals")
     public String DisplayReadingGoals(HttpSession session, Model model){
-        UserDto user = (UserDto) session.getAttribute("user");
-        model.addAttribute("userAccount", user);
+        this.user = (UserDto) session.getAttribute("user");
+        model.addAttribute("userAccount", this.user);
 
         List<ReadingGoal> goalList = goalService.GetGoalsByUserID(user.getUserID());
         goalList = goalService.checkGoals(goalList);
@@ -41,11 +42,11 @@ public class ReadingGoalController {
     }
 
     @PostMapping("/ReadingGoals")
-    public String AddReadingGoal(@RequestParam int readingGoal, @RequestParam Date deadline, HttpSession session, Model model){
+    public String AddReadingGoal(@RequestParam int readingGoal, @RequestParam Date deadline, Model model){
 
-        List<ReadingGoal> goalList = goalService.AddGoal(readingGoal,deadline,(UserDto)session.getAttribute("user"));
+        List<ReadingGoal> goalList = goalService.AddGoal(readingGoal,deadline, this.user);
         model.addAttribute("goalList", goalService.checkGoals(goalList));
-       return ("reading-goals");
+       return ("redirect:/ReadingGoals");
     }
 
 
