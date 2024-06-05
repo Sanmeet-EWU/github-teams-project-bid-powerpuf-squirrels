@@ -5,8 +5,8 @@ Noveleaf is a Spring MVC application built with Maven and Thymeleaf. This README
 
 ## Prerequisites
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
-- [Java JDK 17](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)
-- [Maven](https://maven.apache.org/install.html) (Will be installed when opened with IntelliJ)
+- [Java JDK 17](https://www.oracle.com/il-en/java/technologies/downloads/#jdk17-windows) (Can be installed via inteliJ)
+- [Maven](https://maven.apache.org/install.html) (Can be installed via inteliJ)
 
 ## Build and Test the System
 
