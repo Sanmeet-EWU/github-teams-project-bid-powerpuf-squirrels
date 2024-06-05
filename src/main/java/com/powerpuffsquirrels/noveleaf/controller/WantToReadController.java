@@ -1,15 +1,14 @@
 package com.powerpuffsquirrels.noveleaf.controller;
 
 import com.powerpuffsquirrels.noveleaf.DataTransferObj.UserDto;
+import com.powerpuffsquirrels.noveleaf.model.Author;
+import com.powerpuffsquirrels.noveleaf.model.Book;
 import com.powerpuffsquirrels.noveleaf.model.UserAccount;
 import com.powerpuffsquirrels.noveleaf.repository.AuthorRepository;
 import com.powerpuffsquirrels.noveleaf.repository.BookAuthorRepository;
 import com.powerpuffsquirrels.noveleaf.repository.BookRepository;
 import com.powerpuffsquirrels.noveleaf.repository.WantToReadRepository;
-import com.powerpuffsquirrels.noveleaf.service.imp.AuthorService;
-import com.powerpuffsquirrels.noveleaf.service.imp.BookAuthorService;
-import com.powerpuffsquirrels.noveleaf.service.imp.BookService;
-import com.powerpuffsquirrels.noveleaf.service.imp.WantToReadService;
+import com.powerpuffsquirrels.noveleaf.service.imp.*;
 import com.powerpuffsquirrels.noveleaf.service.shelves.WantToReadShelf;
 import com.powerpuffsquirrels.noveleaf.service.shelves.WantToReadItem;
 import jakarta.servlet.http.HttpSession;
@@ -27,10 +26,10 @@ public class WantToReadController {
     private UserAccount userAccount;
     //private WantToReadRepository readShelfRepository;
     private WantToReadShelf wantToReadShelf;
-
+    private UserDto user;
 
     @Autowired
-    private WantToReadService readShelfService;
+    private WantToReadService wantReadShelfService;
 
     @Autowired
     private AuthorService authorService;
@@ -41,20 +40,27 @@ public class WantToReadController {
     @Autowired
     private BookAuthorService bookAuthorService;
 
+    @Autowired
+    ReadShelfService readShelfService;
+
+    @Autowired
+    ReadingGoalService goalService;
+
 
     @GetMapping("/wanttoreadshelf")
     public String loadBooks(WantToReadRepository readShelfRepository, AuthorRepository AuthorRepo, BookRepository BookRepo, BookAuthorRepository BookAuthRepo, Model model, HttpSession session) {
-        UserDto user = (UserDto) session.getAttribute("user");
-        model.addAttribute("userAccount", (UserDto) session.getAttribute("user"));
+        this.user = (UserDto) session.getAttribute("user");
+
+        model.addAttribute("userAccount", this.user);
 
 
         //Too lazy to change constructor object for readshelf :)
         this.userAccount = new UserAccount();
-        this.userAccount.setUserID(user.getUserID());
-        this.userAccount.setUsername(user.getUsername());
+        this.userAccount.setUserID(this.user.getUserID());
+        this.userAccount.setUsername(this.user.getUsername());
 
         //build WantToRead, which will be done automatically in the readShelf constructor
-        this.wantToReadShelf = new WantToReadShelf(this.userAccount, readShelfService, authorService, bookService, bookAuthorService); //and this
+        this.wantToReadShelf = new WantToReadShelf(this.userAccount, wantReadShelfService, authorService, bookService, bookAuthorService); //and this
 
         //I was going to try and get the readShelfItems without having to basically copy the list in the readShelf
         //but you sort of need a list of objects for thymeleaf to iterate through. idk, what's done is done, lel.
@@ -67,21 +73,13 @@ public class WantToReadController {
     }
 
     //This shit is currently not working
-    @PostMapping("/wanttoreadshelf")
-    public String rateBook(@RequestParam("isbn") String isbn, @RequestParam("rating") int rating, HttpSession session) {
-        // Logic to handle the rating, e.g., save the rating to the database
-        UserDto user = (UserDto) session.getAttribute("user");
+    @PostMapping("/readwantedbook")
+    public String submitBook(int index, Model model) {
+        WantToReadItem item = this.wantToReadShelf.getItems().get(index);
+        readShelfService.addReadShelfItem(item.getIsbn(), this.user.getUserID());
+        goalService.updateGoals(this.user.getUserID(), 1);
+        return "redirect:/readshelf";
 
-        // Call your service to handle the rating logic
-        //readShelfService.rateBook(isbn, rating, user);
-
-        System.out.println("Rating book with ISBN: " + isbn + " with rating: " + rating);
-
-        //update read_shelf
-        readShelfService.updateWantToReadItem(isbn, rating, user.getUserID());
-
-        // Redirect to the readshelf page or any other page
-        return "redirect:/wanttoreadshelf";
     }
 
 }

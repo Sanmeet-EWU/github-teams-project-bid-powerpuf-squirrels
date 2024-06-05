@@ -85,7 +85,7 @@ public class SearchController {
     }
 
     @PostMapping("/readbook")
-    public ResponseEntity<String> submitBook(int index, Model model) {
+    public String submitBook(int index, Model model) {
         //I think you need to add them in the order of Aythor, BookAuthor, Book
 
         //add author to author table
@@ -103,13 +103,14 @@ public class SearchController {
         goalService.updateGoals(user.getUserID(), 1);
 
         //yes, this will always return ok. Can mess with it more later
-        return ResponseEntity.ok(this.books.get(index).getTitle() + " has been added to your read shelf!");
+        //return ResponseEntity.ok(this.books.get(index).getTitle() + " has been added to your read shelf!");
 
-        //need to look more into return "redirect:/readshelf"; as a possible alternative
+        return "redirect:/readshelf";
 
     }
+
     @PostMapping("/wantbook")
-    public ResponseEntity<String> submitWantBook(int index, Model model) {
+    public String submitWantBook(int index, Model model) {
         //I think you need to add them in the order of Aythor, BookAuthor, Book
 
         //add author to author table
@@ -124,9 +125,10 @@ public class SearchController {
         wantToReadService.addWantToReadItem(this.books.get(index).getIsbn(), user.getUserID());
 
         //yes, this will always return ok. Can mess with it more later
-        return ResponseEntity.ok(this.books.get(index).getTitle() + " has been added to your want to read shelf!");
+        //return ResponseEntity.ok(this.books.get(index).getTitle() + " has been added to your want to read shelf!");
 
         //need to look more into return "redirect:/readshelf"; as a possible alternative
+        return "redirect:/wanttoreadshelf";
 
     }
 

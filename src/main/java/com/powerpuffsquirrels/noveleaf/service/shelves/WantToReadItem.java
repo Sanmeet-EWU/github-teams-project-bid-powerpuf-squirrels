@@ -7,12 +7,14 @@ import com.powerpuffsquirrels.noveleaf.model.WantToReadEntity;
 import com.powerpuffsquirrels.noveleaf.service.imp.AuthorService;
 import com.powerpuffsquirrels.noveleaf.service.imp.BookAuthorService;
 import com.powerpuffsquirrels.noveleaf.service.imp.BookService;
+import lombok.Getter;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WantToReadItem {
+    @Getter
     private Book book;
     private List<Author> authors = new ArrayList<>();
     private final WantToReadEntity wantToReadEntity;
