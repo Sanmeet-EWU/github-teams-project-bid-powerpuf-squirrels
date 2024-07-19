@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View and Update Preferences</title>
+  <link rel="stylesheet" th:href="@{styles.css}">
+</head>
+<body>
+<th:block th:insert="~{header :: header}"></th:block>
+<div class="container">
+  <h1>View and Update Preferences</h1>
+
+  <form th:action="@{/preferences}" method="post">
+    <div class="form-group">
+      <label for="genres">Genres</label>
+      <input type="text" id="genres" name="genres" class="form-control" placeholder="Enter genres separated by commas">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Update Preferences</button>
+  </form>
+  <br />
+  <h2>Current Preferences</h2>
+  <div th:if="${userPreferences != null}">
+    <ul class="display-books">
+      <li th:each="preference : ${userPreferences}">
+        <div class="book-item">
+          <span class="title" th:text="'Genre: ' + ${preference.value}"></span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<th:block th:insert="~{footer :: footer}"></th:block>
+</body>
+</html>

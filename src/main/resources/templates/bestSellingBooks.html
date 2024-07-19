@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New York Times Best Selling Books</title>
+  <a href="https://www.amazon.com/Books/b?ie=UTF8&node=549028">Click here to buy book.</a>
+
+  <style>
+    .books-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .book {
+      flex: 0 1 calc(25% - 10px); /* Adjusting to fit 5 books in a row */
+      margin: 5px;
+      box-sizing: border-box;
+      text-align: center;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    .book img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .share-button {
+      background-color: #007bff;
+      color: white;
+      padding: 5px 10px;
+      text-decoration: none;
+      border-radius: 3px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .book-cover {
+      width: 150px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+<h1>New York Times Best Selling Books</h1>
+<ul class="books-container">
+  <li th:each="book : ${books}" class="book">
+    <img th:src="${book.coverImageUrl}" alt="Cover Image" class="book-cover"/>
+    <h2 th:text="${book.title}">Book Title</h2>
+    <p th:text="${book.authorNames}">Author</p>
+    <p th:text="${book.genre}">Genre</p>
+  </li>
+</ul>
+</body>
+</html>

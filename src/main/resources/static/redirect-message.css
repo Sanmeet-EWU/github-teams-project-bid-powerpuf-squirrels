@@ -1,0 +1,5 @@
+/*make the h2 tag in the redirect-message.html file to be centered horizontally*/
+/*any other css pertaining directly to redirect webpages, which for now, is nothing extra*/
+h2 {
+    text-align: center;
+}

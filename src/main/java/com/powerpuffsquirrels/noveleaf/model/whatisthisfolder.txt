@@ -1,0 +1,1 @@
+So the model package contains the "back end". Basically all our java classes that are used to store data, do calculations, etc.

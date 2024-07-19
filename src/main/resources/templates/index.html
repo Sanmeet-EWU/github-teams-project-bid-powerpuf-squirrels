@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Home Page</title>
+    <link rel="stylesheet" th:href="@{styles.css}">
+    <script type="text/javascript">
+        function handleImageLoad(image) {
+            if (image.naturalWidth === 1 && image.naturalHeight === 1) {
+                image.src = 'noveleafnobook-low-vibrance.png'; //fall back image
+            }
+        }
+    </script>
+</head>
+<body>
+<th:block th:insert="~{header :: header}"></th:block>
+<div class="container">
+    Test user:<br>
+    username: test<br>
+    password: bananas<br><br>
+
+    In general, use ctrl+shift+r to refresh the page and see style changes.<br><br><br><br>
+
+
+<!--Most read books in the last 7 days-->
+    <h1>Most read books in the last 7 days</h1>
+    <div th:if="${mostReadBooks != null}">
+        <ul class="display-books">
+            <li th:each="mostReadBooks, iter : ${mostReadBooks}">
+                <div class="book-item">
+                    <img class="book-cover" th:src="'https://covers.openlibrary.org/b/isbn/' + ${mostReadBooks.isbn} + '-M.jpg'"
+                         alt="cover"
+                         width="160px"
+                         onload="handleImageLoad(this)"
+                         onerror="this.src='noveleafnobook.png'"/>
+
+<!--                    These are causing issues at the moment, Due to adding via an index. Probably will need to change it to adding books by isbn or book object-->
+<!--                    <form th:if="${userAccount != null}" id="addBookForm" th:action="@{/readbook}" method="post">-->
+<!--                        <input type="hidden" name="index" th:value="${iter.index}" />-->
+<!--                        <button type="submit" class="add-buttons">Read</button>-->
+<!--                    </form>-->
+<!--                    <form th:if="${userAccount != null}" id="wantToReadBookForm" th:action="@{/wantbook}" method="post">-->
+<!--                        <input type="hidden" name="index" th:value="${iter.index}" />-->
+<!--                        <button type="submit" class="add-buttons">Want To Read</button>-->
+<!--                    </form>-->
+
+
+                    <span class="title" th:text="${mostReadBooks.title}" th:title="${mostReadBooks.title}"></span>
+<!--                    <span class="authors" th:text="${book.getAuthorNames()}"></span>-->
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<th:block th:insert="~{footer :: footer}"></th:block>
+</body>
+</html>
